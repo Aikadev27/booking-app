@@ -6,7 +6,7 @@ export interface IHomePageProps {}
 export default function HomePage(props: IHomePageProps) {
   return (
     <FullLayout>
-      <div className="">home page</div>
+      <div className="h-[100vh] bg-indigo-400">homepage</div>
     </FullLayout>
   );
 }

@@ -1,12 +1,28 @@
 "use client";
-import AuthLayout from "@/layouts/AuthLayout/AuthLayout";
 import * as React from "react";
+import AuthLayout from "@/layouts/AuthLayout/AuthLayout";
 import { clsx } from "clsx";
 import style from "./login.module.scss";
 import Link from "next/link";
+import { loginUser } from "@/services/auth.service";
+import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+
 export interface ILoginProps {}
 
 export default function Login(props: ILoginProps) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const handleLogin = (e: any) => {
+    e.preventDefault();
+    const loginFormData = { email: email, password: password };
+    loginUser(loginFormData, dispatch, router);
+  };
+
   return (
     <AuthLayout>
       <div className="bg-white dark:bg-gray-900">
@@ -40,7 +56,7 @@ export default function Login(props: ILoginProps) {
               </div>
 
               <div className="mt-8">
-                <form>
+                <form onSubmit={handleLogin}>
                   <div>
                     <label
                       htmlFor="email"
@@ -49,10 +65,13 @@ export default function Login(props: ILoginProps) {
                       Email Address
                     </label>
                     <input
+                      required
+                      onChange={(e) => setEmail(e.target.value)}
                       type="email"
                       name="email"
                       id="email"
                       placeholder="example@example.com"
+                      autoComplete="off"
                       className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
@@ -68,6 +87,8 @@ export default function Login(props: ILoginProps) {
                     </div>
 
                     <input
+                      required
+                      onChange={(e) => setPassword(e.target.value)}
                       type="password"
                       name="password"
                       id="password"
