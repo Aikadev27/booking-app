@@ -1,12 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
   initialState: {
     login: {
-      currentUser: null,
+      user: null,
       error: false,
       isFetching: false,
+      isAuthenticated: false,
     },
     register: {
       isError: false,
@@ -20,12 +21,22 @@ const authSlice = createSlice({
     },
     loginSuccess: (state, action) => {
       state.login.isFetching = false;
-      state.login.currentUser = action.payload;
+      state.login.user = action.payload;
+      localStorage.setItem("user", JSON.stringify(state.login.user));
+      state.login.isAuthenticated = true;
+
       state.login.error = false;
     },
     loginFailed: (state) => {
       state.login.isFetching = false;
       state.login.error = true;
+      state.login.isAuthenticated = false;
+    },
+    setUserData: (state, action) => {
+      state.login.user = action.payload;
+    },
+    logOut: (state) => {
+      state.login.isAuthenticated = false;
     },
     registerStart: (state) => {
       state.register.isFetching = true;
@@ -50,5 +61,7 @@ export const {
   registerStart,
   registerSuccess,
   registerFailed,
+  setUserData,
+  logOut,
 } = authSlice.actions;
 export default authSlice.reducer;

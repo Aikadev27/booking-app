@@ -16,12 +16,10 @@ export const loginUser = async (userData: any, dispatch: any, router: any) => {
 
   try {
     const res = await axios.post("/auth/login", userData);
-    dispatch(loginSuccess(res.data));
-    const accessToken = res.data.accessToken;
-    const refreshToken = res.data.refreshToken;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
+    dispatch(loginSuccess(res.data.info));
 
+    localStorage.setItem("accessToken", res.data.accessToken);
+    localStorage.setItem("refreshToken", res.data.refreshToken);
     toast.success(
       `${res.data.info.sex ? "Hello Mr." : "Hello Ms."}  ${
         res.data.info.username

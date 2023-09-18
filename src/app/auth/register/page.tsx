@@ -47,7 +47,7 @@ export default function Register(props: IRegisterProps) {
     registerUser(registerFormData, dispatch, router);
   };
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-gray-900 dark:bg-gray-900">
       <div className="flex justify-center min-h-screen">
         <div
           className={clsx("hidden bg-cover lg:block lg:w-2/5", style.bgImg)}
@@ -83,7 +83,7 @@ export default function Register(props: IRegisterProps) {
                   id="username"
                   type="text"
                   placeholder="John"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
 
@@ -101,7 +101,7 @@ export default function Register(props: IRegisterProps) {
                   list="cities"
                   type="text"
                   placeholder="Choose your city"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 <datalist id="cities">
                   <option value="Cần Thơ"></option>
@@ -128,7 +128,7 @@ export default function Register(props: IRegisterProps) {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   type="text"
                   placeholder="XX-XXX-XXX"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
               <div>
@@ -144,7 +144,7 @@ export default function Register(props: IRegisterProps) {
                   onChange={(e) => setAge(+e.target.value)}
                   type="text"
                   placeholder="Age"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
 
@@ -161,7 +161,7 @@ export default function Register(props: IRegisterProps) {
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   placeholder="johnsnow@example.com"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
               <div>
@@ -178,7 +178,7 @@ export default function Register(props: IRegisterProps) {
                   type="text"
                   list="genders"
                   placeholder="Choose your gender"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 <datalist id="genders">
                   <option value="Male"></option>
@@ -199,7 +199,7 @@ export default function Register(props: IRegisterProps) {
                   id="password"
                   type="password"
                   placeholder="Enter your password"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
               </div>
 
@@ -215,7 +215,7 @@ export default function Register(props: IRegisterProps) {
                   id="confirmPassword"
                   type="password"
                   placeholder="Enter your password"
-                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  className="block w-full px-5 py-3 mt-2 text-gray-300 placeholder-gray-400  border border-gray-200 rounded-md  bg-gray-900  dark:border-gray-700 focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 />
                 <div>
                   <label
@@ -238,7 +238,7 @@ export default function Register(props: IRegisterProps) {
               </button>
 
               <Link href={"/"} className="max-w-[130px]">
-                <button className="flex items-center justify-between  px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-fuchsia-600 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <button className="flex items-center justify-between  px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-indigo-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   <span>Back Home </span>
                 </button>
               </Link>

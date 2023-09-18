@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer/Footer";
-import NavBar from "@/components/Navbar/NavBar";
+import NavBar from "@/components/Navbar/Navbar";
+
 import * as React from "react";
 
 export interface IFullLayoutProps {
