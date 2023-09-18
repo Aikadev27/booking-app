@@ -137,44 +137,116 @@ export default function NavBar(props: INavBarProps) {
                   </button>
                 </div>
 
-                <div
-                  className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
-                    dropdownFlag ? "block" : " hidden"
-                  } transition ease-out duration-100 `}
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu-button"
-                  tabIndex={-1}
-                >
-                  <Link
-                    href="/user/userProfile"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
-                    role="menuitem"
+                {user?.role === "admin" ? (
+                  <div
+                    className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                      dropdownFlag ? "block" : " hidden"
+                    } transition ease-out duration-100 `}
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button"
                     tabIndex={-1}
-                    id="user-menu-item-0"
                   >
-                    Your Profile
-                  </Link>
-                  <Link
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
-                    role="menuitem"
+                    <Link
+                      href="/user/userProfile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-0"
+                    >
+                      Your Profile
+                    </Link>
+                    <Link
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-1"
+                    >
+                      Go Admin Page
+                    </Link>
+                    <Link
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-2"
+                      onClick={handleLogout}
+                    >
+                      Sign out
+                    </Link>
+                  </div>
+                ) : user?.role === "business" ? (
+                  <div
+                    className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                      dropdownFlag ? "block" : " hidden"
+                    } transition ease-out duration-100 `}
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button"
                     tabIndex={-1}
-                    id="user-menu-item-1"
                   >
-                    Settings
-                  </Link>
-                  <Link
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
-                    role="menuitem"
+                    <Link
+                      href="/user/userProfile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-0"
+                    >
+                      Your Profile
+                    </Link>
+                    <Link
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-1"
+                    >
+                      Mange your business
+                    </Link>
+                    <Link
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-2"
+                      onClick={handleLogout}
+                    >
+                      Sign out
+                    </Link>
+                  </div>
+                ) : (
+                  <div
+                    className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                      dropdownFlag ? "block" : " hidden"
+                    } transition ease-out duration-100 `}
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="user-menu-button"
                     tabIndex={-1}
-                    id="user-menu-item-2"
-                    onClick={handleLogout}
                   >
-                    Sign out
-                  </Link>
-                </div>
+                    <Link
+                      href="/user/userProfile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-0"
+                    >
+                      Your Profile
+                    </Link>
+
+                    <Link
+                      href="#"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                      role="menuitem"
+                      tabIndex={-1}
+                      id="user-menu-item-2"
+                      onClick={handleLogout}
+                    >
+                      Sign out
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
