@@ -148,7 +148,7 @@ export default function NavBar(props: INavBarProps) {
                     tabIndex={-1}
                   >
                     <Link
-                      href="/user/userProfile"
+                      href="/user/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                       role="menuitem"
                       tabIndex={-1}
@@ -157,7 +157,7 @@ export default function NavBar(props: INavBarProps) {
                       Your Profile
                     </Link>
                     <Link
-                      href="#"
+                      href="/admin"
                       className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                       role="menuitem"
                       tabIndex={-1}
@@ -187,7 +187,7 @@ export default function NavBar(props: INavBarProps) {
                     tabIndex={-1}
                   >
                     <Link
-                      href="/user/userProfile"
+                      href="/user/profile"
                       className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                       role="menuitem"
                       tabIndex={-1}
