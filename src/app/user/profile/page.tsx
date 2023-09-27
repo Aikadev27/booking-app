@@ -2,7 +2,7 @@
 import Button from "@/components/Button";
 import Footer from "@/components/Footer/Footer";
 import FullLayout from "@/layouts/FullLayout/FullLayout";
-import Wrap from "@/layouts/Grap";
+import Wrap from "@/layouts/Wrap";
 import { useAppSelector } from "@/redux/hooks";
 import { updateInfo } from "@/services/user.service";
 import Link from "next/link";

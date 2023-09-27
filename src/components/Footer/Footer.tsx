@@ -7,7 +7,7 @@ export interface IFooterProps {}
 const currentYear = new Date().getFullYear();
 export default function Footer(props: IFooterProps) {
   return (
-    <footer className="relative w-full">
+    <footer className=" w-full">
       <div className="mx-auto w-full max-w-7xl px-8">
         <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
           <Typography
