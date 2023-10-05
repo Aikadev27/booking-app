@@ -23,7 +23,6 @@ export default function NavBar(props: INavBarProps) {
   };
   const handleDropMobile = () => {
     setDropMobile(!dropMobile);
-    router.push("/");
   };
 
   const handleLogout = () => {
@@ -53,7 +52,7 @@ export default function NavBar(props: INavBarProps) {
               <span className="sr-only">Open main menu</span>
 
               <svg
-                className={`${dropMobile ? "block" : "hidden"} h-6 w-6`}
+                className={`${dropMobile ? "hidden" : "block"} h-6 w-6`}
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
@@ -68,7 +67,7 @@ export default function NavBar(props: INavBarProps) {
               </svg>
 
               <svg
-                className={`${dropMobile ? "hidden" : "block"} h-6 w-6`}
+                className={`${dropMobile ? "block" : "hidden"} h-6 w-6`}
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
@@ -99,7 +98,7 @@ export default function NavBar(props: INavBarProps) {
 
                 <LinkConditional
                   content="Book Now"
-                  path="/booking/reservation"
+                  path="/hotel"
                   isAuthenticated={isAuthenticated}
                   style="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
                 />
@@ -272,7 +271,7 @@ export default function NavBar(props: INavBarProps) {
       </div>
 
       <div
-        className={`${dropMobile ? "hidden" : "block"} sm:hidden`}
+        className={`${dropMobile ? "block" : "hidden"} sm:hidden`}
         id="mobile-menu"
       >
         <Link

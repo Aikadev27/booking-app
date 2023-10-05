@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   icons: "/icon.png",
 };
+
 // toastify
 import { ToastContainer } from "react-toastify";
 

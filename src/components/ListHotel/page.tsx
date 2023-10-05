@@ -1,7 +1,6 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchListHotel } from "@/redux/hotelSlice";
-import Link from "next/link";
 import { useEffect } from "react";
 import HotelModal from "../HotelModal/page";
 import Loader from "../Loader";

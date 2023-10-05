@@ -19,6 +19,7 @@
     "clsx": "^2.0.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "lightbox.js-react": "^0.9.2",
     "next": "13.4.19",
     "next-pwa": "^5.6.0",
     "postcss": "8.4.29",

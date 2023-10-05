@@ -15,7 +15,7 @@ export default function HomePage(props: IHomePageProps) {
   return (
     <FullLayout>
       <Wrap>
-        <div className="pt-[64px]">
+        <div>
           <Carousel />
           <div className="container mx-auto">
             {" "}
