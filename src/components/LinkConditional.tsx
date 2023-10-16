@@ -2,9 +2,11 @@ import * as React from "react";
 import Link from "next/link";
 
 export interface ILinkConditionalProps {
+  // href
   path: string;
   style?: string;
   content?: string;
+  //  from localStorage
   isAuthenticated?: boolean;
 }
 

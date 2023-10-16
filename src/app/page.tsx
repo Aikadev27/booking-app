@@ -1,7 +1,6 @@
 "use client";
 
 import FullLayout from "@/layouts/FullLayout/FullLayout";
-import * as React from "react";
 import Carousel from "@/components/Carousel/carousel";
 import Wrap from "@/layouts/Wrap";
 import ListHotel from "@/components/ListHotel/page";
@@ -18,7 +17,6 @@ export default function HomePage(props: IHomePageProps) {
         <div>
           <Carousel />
           <div className="container mx-auto">
-            {" "}
             <h1 className="text-base xl:text-xl text-black font-bold text-center xl:text-left xl:my-4 my-2">
               Trending Destinations
             </h1>

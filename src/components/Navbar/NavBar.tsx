@@ -60,8 +60,8 @@ export default function NavBar(props: INavBarProps) {
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 />
               </svg>
@@ -75,8 +75,8 @@ export default function NavBar(props: INavBarProps) {
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M6 18L18 6M6 6l12 12"
                 />
               </svg>
@@ -253,7 +253,7 @@ export default function NavBar(props: INavBarProps) {
               <Link href={"/auth/login"} className="mr-[4px]">
                 <Button
                   content="Login"
-                  bgColor="bg-indigo-500"
+                  bgColor="bg-[#f23e5c]"
                   textColor="text-white"
                   padding="p-[8px]"
                 />
@@ -261,7 +261,7 @@ export default function NavBar(props: INavBarProps) {
               <Link href={"/auth/register"}>
                 <Button
                   content="Register"
-                  bgColor="bg-green-500"
+                  bgColor="bg-[#2176ff]"
                   textColor="text-white"
                 />
               </Link>

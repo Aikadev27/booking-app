@@ -40,8 +40,8 @@ export default function Profile(props: IProfileProps) {
   return (
     <Wrap>
       <div>
-        <div className="xl:flex sm:mx-auto xl:justify-start xl:h-screen h-fit bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 xl:bg-none pb-6">
-          <div className="xl:w-[500px] sm:mx-auto  xl:bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 ">
+        <div className="xl:flex sm:mx-auto xl:justify-start xl:h-screen h-fit bg-gray-200 xl:bg-none ">
+          <div className="xl:w-[500px] sm:mx-auto   xl:shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
             <div className="mx-auto xl:flex items-center">
               <div className="xl:mx-auto xl:pt-[10rem]">
                 <img
@@ -56,16 +56,13 @@ export default function Profile(props: IProfileProps) {
                 <h1 className="text-center font-bold">{user?.username}</h1>
                 <p className="text-center font-light">{user?.email}</p>
                 <Link href={"/"} className=" text-center py-10 block">
-                  <Button
-                    content="Back Home"
-                    bgColor="bg-gradient-to-r from-yellow-600 to-red-600"
-                  />
+                  <Button content="Back Home" bgColor="bg-[#1877f2]" />
                 </Link>
               </div>
             </div>
           </div>
-          <div className="xl:w-full bg-transparent xl:bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 ">
-            <h1 className="text-center pt-[100px] xl:pt-[20px] text-2xl xl:text-3xl font-bold md:text-white text-black">
+          <div className="xl:w-full bg-transparent  ">
+            <h1 className="text-center pt-[100px] xl:pt-[20px] text-2xl xl:text-3xl font-bold  text-black">
               Profile Settings
             </h1>
             <div className="flex justify-center items-center mt-[40px] xl:mt-[60px] xl:ml-10 xl:mr-10 ml-4 mr-4">
@@ -76,7 +73,7 @@ export default function Profile(props: IProfileProps) {
                 <div className="col-span-2 md:m-0 mt-4 mb-2">
                   <label
                     htmlFor="username"
-                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-white"
+                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-black font-black"
                   >
                     User Name
                   </label>
@@ -92,7 +89,7 @@ export default function Profile(props: IProfileProps) {
                 <div className="col-span-2 md:m-0 mt-4 mb-2">
                   <label
                     htmlFor="email"
-                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-white"
+                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-black font-black"
                   >
                     Email
                   </label>
@@ -108,7 +105,7 @@ export default function Profile(props: IProfileProps) {
                 <div className="col-span-2 md:m-0 mt-4 mb-2">
                   <label
                     htmlFor="phoneNumber"
-                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-white"
+                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-black font-black"
                   >
                     Phone Number
                   </label>
@@ -124,7 +121,7 @@ export default function Profile(props: IProfileProps) {
                 <div className="col-span-2 md:m-0 mt-4 mb-2">
                   <label
                     htmlFor="address"
-                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-white"
+                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-black font-black"
                   >
                     Address
                   </label>
@@ -140,7 +137,7 @@ export default function Profile(props: IProfileProps) {
                 <div className="col-span-2 md:m-0 mt-4 mb-2">
                   <label
                     htmlFor="sex"
-                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-white"
+                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-black font-black"
                   >
                     Gender
                   </label>
@@ -161,7 +158,7 @@ export default function Profile(props: IProfileProps) {
                 <div className="col-span-2 md:m-0 mt-4 mb-2">
                   <label
                     htmlFor="age"
-                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-white"
+                    className="xl:block mt-[12px] mb-[12px] text-sm xl:text-gray-800 text-black font-black"
                   >
                     Age
                   </label>
@@ -178,13 +175,13 @@ export default function Profile(props: IProfileProps) {
                   <div className="col-span-2 mx-auto">
                     <button
                       type="reset"
-                      className="bg-gradient-to-r from-red-200 to-red-600 md:px-20 py-3 px-12 rounded-xl "
+                      className="bg-[#1877f2] md:px-20 py-3 px-12 rounded-xl hover:opacity-50 cursor-pointer"
                       onClick={() => setEdit(true)}
                     >
                       Edit
                     </button>
                   </div>
-                  <div className="bg-gradient-to-r from-green-200 via-green-400 to-purple-700 md:px-20 py-3 px-12 rounded-xl mx-auto ">
+                  <div className="bg-[#f0284a] md:px-20 py-3 px-12 rounded-xl mx-auto hover:opacity-50 cursor-pointer">
                     <button className="" type="submit">
                       Update
                     </button>

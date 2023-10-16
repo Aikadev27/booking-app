@@ -1,11 +1,21 @@
-import Link from "next/link";
-import * as React from "react";
+"use client";
+import LinkConditional from "../LinkConditional";
+import { useAppSelector } from "@/redux/hooks";
+import { useEffect, useState } from "react";
 
 export interface IRoomsListProps {
   rooms: RoomType[];
 }
 
 export default function RoomsList(props: IRoomsListProps) {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   return (
     <div>
       <ul>
@@ -188,11 +198,13 @@ export default function RoomsList(props: IRoomsListProps) {
                           Night
                         </span>{" "}
                       </p>
-                      <Link href={`/booking/${room._id}`}>
-                        <button className=" text-[12px] p-1 bg-yellow-900 rounded-md my-4 md:px-6 md:py-4 text-white hover:bg-deep-orange-400 md:text-base hover:text-black">
-                          Book now
-                        </button>
-                      </Link>
+
+                      <LinkConditional
+                        path={`/booking/${room._id}`}
+                        content="Book Now"
+                        isAuthenticated={isAuthenticated}
+                        style="text-[12px] p-1 bg-yellow-900 rounded-md my-4 md:px-6 md:py-4 text-white hover:bg-deep-orange-400 md:text-base hover:text-black"
+                      />
                     </div>
                   </div>
                 </div>
@@ -201,7 +213,6 @@ export default function RoomsList(props: IRoomsListProps) {
                 </p>
               </div>
             </div>
-            <div></div>
           </li>
         ))}
       </ul>
