@@ -1,5 +1,4 @@
-import * as React from "react";
-
+"use client";
 export interface IButtonProps {
   content: string;
   padding?: string;
