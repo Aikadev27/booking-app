@@ -1,11 +1,15 @@
 "use client";
-
+// aos scroll view
+import AOS from "aos";
+import "aos/dist/aos.css";
 import ReduxProvider from "@/redux/provider";
+
+// global style
 import "@/styles/globals.css";
-import { Metadata } from "next";
+
+// import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { metadata } from "@/utils/metadata";
-
 // export const metadata: Metadata = {
 //   title: "Booking App",
 //   description: "Hotel booking app by Aikadev",
@@ -43,6 +47,10 @@ export default function RootLayout(props: IRootLayoutProps) {
           console.error("Service worker registration failed:", error);
         });
     }
+    AOS.init({
+      duration: 800,
+      once: false,
+    });
   }, []);
 
   return (

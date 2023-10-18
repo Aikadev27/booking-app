@@ -54,13 +54,17 @@ export default function HotelByCity(props: IHotelByCityProps) {
           <div>
             <div>
               <img
+                data-aos="fade-down"
                 src={imageSrc}
                 alt={location}
                 className="w-full h-[300px] object-cover hidden md:block rounded-md "
               />
             </div>
             <div>
-              <h1 className="mt-0 md:mt-[24px] text-center md:text-left ">
+              <h1
+                data-aos="fade-right"
+                className="mt-0 md:mt-[24px] text-center md:text-left "
+              >
                 <span className="border-b-[2px] border-solid border-gray-600 text-base md:text-2xl font-bold text-gray-700">
                   {city} City's Hotels
                 </span>
@@ -68,6 +72,7 @@ export default function HotelByCity(props: IHotelByCityProps) {
               <ul className="grid grid-cols-6 xl:grid-cols-10">
                 {listHotel.map((hotel: HotelType, index: any) => (
                   <li
+                    data-aos="fade-up"
                     key={index}
                     className="col-span-3 mx-1 my-5 rounded-xl p-1 xl:col-span-2 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition ease-in-out hover:bg-gray-300 hover:translate-y-1"
                   >
@@ -90,7 +95,7 @@ export default function HotelByCity(props: IHotelByCityProps) {
             <Loader />
           </div>
         ) : (
-          <div className="text-center">No response data available</div>
+          <div className="text-center">pleas wait</div>
         )}
       </div>
     </FullLayout>

@@ -24,6 +24,7 @@ export default function ListHotel(props: IListHotelProps) {
           <ul className="grid grid-cols-6 xl:grid-cols-12">
             {listHotel.slice(0, 12).map((hotel: HotelType, index: any) => (
               <li
+                data-aos="fade-up"
                 key={index}
                 className="col-span-3 mx-1 my-5 rounded-xl  p-1 xl:col-span-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]  transition ease-in-out  hover:bg-gray-300  hover:translate-y-1"
               >

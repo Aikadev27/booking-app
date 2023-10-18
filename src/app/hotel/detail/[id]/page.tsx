@@ -34,8 +34,9 @@ export default function Detail(props: IDetailProps) {
               <div className="grid grid-cols-10">
                 <div className="col-span-4">
                   {/* main img */}
-                  <div>
+                  <div data-aos="fade-up">
                     <img
+                      data-aos="fade-up"
                       src={hotel.featuredImageUrl[0]}
                       alt="main image"
                       className="h-[150px] md:h-[300px] w-full object-cover rounded-sm"
@@ -46,6 +47,7 @@ export default function Detail(props: IDetailProps) {
                     <ul className="flex flex-nowrap gap-2">
                       {hotel.featuredImageUrl.map((img, index) => (
                         <li
+                          data-aos="fade-up"
                           key={index}
                           className="h-[60px] md:h-[150px] w-[50%] md:w-[30%] my-3"
                         >
@@ -59,7 +61,7 @@ export default function Detail(props: IDetailProps) {
                     </ul>
                   </div>
                 </div>
-                <div className="col-span-6 relative ">
+                <div data-aos="fade-up" className="col-span-6 relative ">
                   <div className="mx-2 md:mx-4">
                     <div className="flex my-1 md:my-3 gap-2 items-center">
                       <span>
@@ -217,7 +219,7 @@ export default function Detail(props: IDetailProps) {
                 <h1 className="capitalize text-gray-900 font-semibold text-sm md:text-base md:mt-4">
                   hotel amenities
                 </h1>
-                <div className="grid grid-cols-8 ">
+                <div data-aos="fade-up" className="grid grid-cols-8 ">
                   <ul className="col-span-2 mr-2 ml-2 p-1">
                     <li className="flex mr-2 mt-2 md:mt-4 text-gray-500 gap-1 md:gap-2 text-sm break-words">
                       <span>
@@ -388,7 +390,10 @@ export default function Detail(props: IDetailProps) {
                   </ul>
                 </div>
               </div>
-              <div className="mt-4 border-t border-gray-300 border-solid">
+              <div
+                data-aos="fade-up"
+                className="mt-4 border-t border-gray-300 border-solid"
+              >
                 <h1 className="capitalize text-gray-900 font-semibold text-sm md:text-base md:mt-4">
                   Explore nearby locations
                 </h1>

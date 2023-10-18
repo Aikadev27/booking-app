@@ -12,7 +12,10 @@ export default function Destinations(props: IDestinationsProps) {
   return (
     <div>
       <div className="grid grid-cols-10 gap-3 mx-1">
-        <div className="col-span-5 relative transition duration-300 ease-in-out hover:opacity-90">
+        <div
+          data-aos="fade-up"
+          className="col-span-5 relative transition duration-300 ease-in-out hover:opacity-90"
+        >
           <Link href={`hotel/${canTho}`} className="block w-full">
             <img
               src="https://statics.vinpearl.com/cantho_1661238771.jpg"
@@ -31,7 +34,10 @@ export default function Destinations(props: IDestinationsProps) {
             </div>
           </Link>
         </div>
-        <div className="col-span-5 relative transition duration-300 ease-in-out hover:opacity-90">
+        <div
+          data-aos="fade-up"
+          className="col-span-5 relative transition duration-300 ease-in-out hover:opacity-90"
+        >
           <Link href={`/hotel/${daNang}`} className="block w-full">
             <img
               src="https://res.klook.com/image/upload/fl_lossy.progressive,w_800,c_fill,q_85/destination/ur2mrg23d91mex03l4mw.jpg"
@@ -52,7 +58,10 @@ export default function Destinations(props: IDestinationsProps) {
         </div>
       </div>
       <div className="grid grid-cols-9 gap-2 mt-3">
-        <div className="col-span-3 relative transition duration-300 ease-in-out hover:opacity-90">
+        <div
+          data-aos="fade-up"
+          className="col-span-3 relative transition duration-300 ease-in-out hover:opacity-90"
+        >
           <Link href={`/hotel/${nhaTrang}`} className="block w-full">
             <img
               src="https://sakos.vn/wp-content/uploads/2023/04/nha-trang-1.jpg"
@@ -71,7 +80,10 @@ export default function Destinations(props: IDestinationsProps) {
             </div>
           </Link>
         </div>
-        <div className="col-span-3 relative transition duration-300 ease-in-out hover:opacity-90">
+        <div
+          data-aos="fade-up"
+          className="col-span-3 relative transition duration-300 ease-in-out hover:opacity-90"
+        >
           <Link href={`/hotel/${daLat}`} className="block w-full">
             <img
               src="https://ik.imagekit.io/tvlk/blog/2023/01/canh-dep-da-lat-1.jpg?tr=dpr-2,w-675"
@@ -90,7 +102,10 @@ export default function Destinations(props: IDestinationsProps) {
             </div>
           </Link>
         </div>
-        <div className="col-span-3 relative transition duration-300 ease-in-out hover:opacity-90">
+        <div
+          data-aos="fade-up"
+          className="col-span-3 relative transition duration-300 ease-in-out hover:opacity-90"
+        >
           <Link href={`/hotel/${vungTau}`} className="block w-full">
             <img
               src="https://cdn3.ivivu.com/2022/09/T%E1%BB%95ng-quan-du-l%E1%BB%8Bch-V%C5%A9ng-T%C3%A0u-ivivu.jpg"

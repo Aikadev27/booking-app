@@ -17,7 +17,10 @@ export default function HomePage(props: IHomePageProps) {
         <div>
           <Carousel />
           <div className="container mx-auto">
-            <h1 className="text-base xl:text-xl text-black font-bold text-center xl:text-left xl:my-4 my-2">
+            <h1
+              data-aos="fade-up"
+              className="text-base xl:text-xl text-black font-bold text-center xl:text-left xl:my-4 my-2"
+            >
               Trending Destinations
             </h1>
             <Destinations />

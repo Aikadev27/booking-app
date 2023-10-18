@@ -40,7 +40,10 @@ export default function Profile(props: IProfileProps) {
   return (
     <Wrap>
       <div>
-        <div className="xl:flex sm:mx-auto xl:justify-start xl:h-screen h-fit bg-gray-200 xl:bg-none ">
+        <div
+          data-aos="fade-up"
+          className="xl:flex sm:mx-auto xl:justify-start xl:h-screen h-fit bg-gray-200 xl:bg-none "
+        >
           <div className="xl:w-[500px] sm:mx-auto   xl:shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] ">
             <div className="mx-auto xl:flex items-center">
               <div className="xl:mx-auto xl:pt-[10rem]">

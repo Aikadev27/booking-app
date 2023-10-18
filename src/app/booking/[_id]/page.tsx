@@ -43,7 +43,7 @@ export default function MakeReservation(props: IMakeReservationProps) {
           <div className="md:h-screen h-fit mt-[64px]">
             {room ? (
               <div className="md:container mx-auto h-full  md:h-full grid md:grid-cols-9 md:gap-5 md:my-auto">
-                <div className="md:col-span-6 my-auto">
+                <div data-aos="fade-up" className="md:col-span-6 my-auto">
                   <div className="mx-3 mt-2 md:hidden">
                     <img
                       src={room.imageUrl[0]}
@@ -211,7 +211,10 @@ export default function MakeReservation(props: IMakeReservationProps) {
                     </div>
                   </form>
                 </div>
-                <div className="md:col-span-3 hidden md:block md:my-auto">
+                <div
+                  data-aos="fade-up"
+                  className="md:col-span-3 hidden md:block md:my-auto"
+                >
                   <div>
                     <img
                       src={room.imageUrl[0]}

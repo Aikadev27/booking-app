@@ -20,13 +20,18 @@ export default function RoomsList(props: IRoomsListProps) {
     <div>
       <ul>
         {props.rooms.map((room, index) => (
-          <li key={index} className="bg-[#e5e5e5] p-2 my-4 rounded-md">
+          <li
+            data-aos="fade-up"
+            key={index}
+            className="bg-[#e5e5e5] p-2 my-4 rounded-md"
+          >
             <h1 className="text-sm md:text-xl font-bold uppercase mb-[15px]">
               TYPE: {room.roomType}
             </h1>
             <div className="grid grid-cols-8 gap-3">
               <div className="col-span-2">
                 <img
+                  data-aos="fade-up"
                   src={room.imageUrl[0]}
                   alt=""
                   className="md:h-[200px] h-[100px] w-full object-cover rounded-md"

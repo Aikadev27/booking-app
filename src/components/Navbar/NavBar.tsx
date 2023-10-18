@@ -35,6 +35,7 @@ export default function NavBar(props: INavBarProps) {
 
   return (
     <nav
+      data-aos="fade-left"
       className="bg-white fixed top-0 right-0 left-0 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] z-50"
       id="navbar"
     >
@@ -156,7 +157,7 @@ export default function NavBar(props: INavBarProps) {
                       Your Profile
                     </Link>
                     <Link
-                      href="/admin"
+                      href="/admin/dashboard"
                       className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                       role="menuitem"
                       tabIndex={-1}
@@ -195,7 +196,7 @@ export default function NavBar(props: INavBarProps) {
                       Your Profile
                     </Link>
                     <Link
-                      href="#"
+                      href="/businessManage"
                       className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                       role="menuitem"
                       tabIndex={-1}
