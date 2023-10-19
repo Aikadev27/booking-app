@@ -7,7 +7,7 @@ export interface IAdminLayoutProps {
 
 export default function AdminLayout(props: IAdminLayoutProps) {
   return (
-    <div className="grid grid-cols-11 h-screen ">
+    <div className="grid grid-cols-11 min-h-screen max-h-full  ">
       <div className="col-span-2 relative">
         <AdminSideBar />
       </div>

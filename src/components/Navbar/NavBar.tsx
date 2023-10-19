@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Button from "../Button";
 import { logOut, setUserData } from "@/redux/authSlice";
 import { useRouter } from "next/navigation";
@@ -10,11 +10,15 @@ export interface INavBarProps {}
 
 export default function NavBar(props: INavBarProps) {
   const user = useAppSelector<any>((state) => state.auth.login?.user);
-  const isAuthenticated = useAppSelector<boolean>(
-    (state) => state.auth.login.isAuthenticated
-  );
-  const [dropdownFlag, setDropdownFlag] = React.useState(false);
-  const [dropMobile, setDropMobile] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+  const [dropdownFlag, setDropdownFlag] = useState(false);
+  const [dropMobile, setDropMobile] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -157,7 +161,7 @@ export default function NavBar(props: INavBarProps) {
                       Your Profile
                     </Link>
                     <Link
-                      href="/admin/dashboard"
+                      href="/admin/userManagement"
                       className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                       role="menuitem"
                       tabIndex={-1}

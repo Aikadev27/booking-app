@@ -1,34 +1,21 @@
 "use client";
-
 import axios from "@/services/axios.service";
 import { toast } from "react-toastify";
 
-export const fetchAllUser = async () => {
+export const fetchListUserByRole = async (role: string) => {
   try {
-    const res = await axios.get("/user/get-all-user");
-    const data: UserType[] = res.data;
-    return data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
-
-export const fetchUserData = async (userId: string) => {
-  try {
-    const res = await axios.get(`/user/get-by-id/${userId}`);
-    // console.log(res.data);
-
+    const res = await axios.get(`/user/get-by-user-role/${role}`);
     return res.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const updateInfo = async (userId: string, formData: any) => {
+export const deleteOneUser = async (userId: string) => {
   try {
-    const res = await axios.patch(`/user/update-user/${userId}`, formData);
-    toast.success(`Update successfully `, {
+    const res = await axios.delete(`/user/delete-user-by-id/${userId}`);
+    const message = res.data.message;
+    toast.success(`${message} `, {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -40,7 +27,7 @@ export const updateInfo = async (userId: string, formData: any) => {
     });
     setTimeout(() => {
       window.location.reload();
-    }, 3000);
+    }, 2000);
   } catch (error: any) {
     toast.error(`${error.message}`, {
       position: "top-right",
@@ -52,6 +39,5 @@ export const updateInfo = async (userId: string, formData: any) => {
       progress: undefined,
       theme: "colored",
     });
-    throw error;
   }
 };

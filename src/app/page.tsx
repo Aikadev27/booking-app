@@ -25,7 +25,7 @@ export default function HomePage(props: IHomePageProps) {
             </h1>
             <Destinations />
           </div>
-          <div className="container mx-auto m-1 xl:py-40 py-5">
+          <div className="container mx-auto m-1 xl:pt-40 xl:pb-20 py-5">
             <ListHotel />
           </div>
           <div className="text-center py-4">
