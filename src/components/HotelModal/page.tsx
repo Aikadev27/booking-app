@@ -23,33 +23,27 @@ export default function HotelModal(props: IHotelModalProps) {
         <div className="text-base break-words">
           <h1 className="break-words font-bold text-base ">
             Name:{" "}
-            <span className="font-light italic text-gray-800">
-              {props.nameHotel}
-            </span>
+            <span className="font-light  text-gray-800">{props.nameHotel}</span>
           </h1>
           <h1 className="break-words font-bold text-base ">
             City:{" "}
-            <span className="font-light italic text-gray-800">
-              {props.location}
-            </span>
+            <span className="font-light  text-gray-800">{props.location}</span>
           </h1>
-          <h1 className="break-words font-bold text-base ">
+          <h1 className=" font-bold text-base flex gap-1">
             Desc:{" "}
-            <span className="font-light italic text-gray-800">
+            <p className="font-light  text-gray-800 overflow-hidden whitespace-nowrap ">
               {props.desc}
-            </span>
+            </p>
           </h1>
         </div>
         <div>
           <h1 className="break-words font-bold text-base ">
             Total reviews:
-            <span className="font-light italic text-gray-800">
-              {props.rateCount}
-            </span>
+            <span className="font-light  text-gray-800">{props.rateCount}</span>
           </h1>
           <h1 className="break-words font-bold text-base ">
             rating:
-            <span className="font-light italic text-gray-800 mr-4 ml-4">
+            <span className="font-light  text-gray-800 mr-4 ml-4">
               {props.averageRating}
             </span>
             ⭐
@@ -57,7 +51,7 @@ export default function HotelModal(props: IHotelModalProps) {
         </div>
       </div>
       <Link href={`/hotel/detail/${props.id}`}>
-        <button className="p-2 bg-green-800 m-2 rounded-xl text-white mx-auto hover:opacity-70 block w-full">
+        <button className="p-2 bg-[#1877F2] m-2 rounded-xl text-white mx-auto hover:opacity-70 block w-full">
           view detail
         </button>
       </Link>

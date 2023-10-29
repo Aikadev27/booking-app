@@ -28,10 +28,7 @@ export default function BookingDetail(props: IBookingDetailProps) {
   return (
     <div className="h-screen bg-none flex justify-center md:items-center md:bg-[url('https://wallpapers.com/images/hd/doodle-glowing-artwork-vhu5ts3hs8bxyq5a.jpg')] ">
       {bookingInfo ? (
-        <div
-          data-aos="fade-up"
-          className="md:bg-white md:opacity-95 rounded-xl w-full h-fit mt-[64px] md:mt-0 mb-[64px] md:mb-0 md:w-[70%] md:h-[80%] md:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:grid md:grid-rows-6 md:p-2"
-        >
+        <div className="md:bg-white md:opacity-95 rounded-xl w-full h-fit mt-[64px] md:mt-0 mb-[64px] md:mb-0 md:w-[70%] md:h-[80%] md:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] md:grid md:grid-rows-6 md:p-2">
           <div className="md:row-span-5">
             <h1 className="text-center text-sm md:text-base text-deep-orange-700 uppercase font-bold  mb-4">
               Detailed room information

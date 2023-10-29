@@ -13,33 +13,31 @@ export interface IHomePageProps {}
 export default function HomePage(props: IHomePageProps) {
   return (
     <FullLayout>
-      <Wrap>
-        <div>
-          <Carousel />
-          <div className="container mx-auto">
-            <h1
-              data-aos="fade-up"
-              className="text-base xl:text-xl text-black font-bold text-center xl:text-left xl:my-4 my-2"
-            >
-              Trending Destinations
-            </h1>
-            <Destinations />
-          </div>
-          <div className="container mx-auto m-1 xl:pt-40 xl:pb-20 py-5">
-            <ListHotel />
-          </div>
-          <div className="text-center py-4">
-            <Link href={"/hotel"}>
-              <Button
-                content="See All"
-                bgColor="bg-green-900"
-                padding="py-[12px] px-[24px]"
-                textColor="text-white"
-              />
-            </Link>
-          </div>
+      <div>
+        <Carousel />
+        <div className="container mx-auto">
+          <h1
+            data-aos="fade-up"
+            className="text-base xl:text-xl text-black font-bold text-center xl:text-left xl:my-4 my-2"
+          >
+            Trending Destinations
+          </h1>
+          <Destinations />
         </div>
-      </Wrap>
+        <div className="container mx-auto m-1 xl:pt-40 xl:pb-20 py-5">
+          <ListHotel />
+        </div>
+        <div className="text-center py-4">
+          <Link href={"/hotel"}>
+            <Button
+              content="See All"
+              bgColor="bg-green-900"
+              padding="py-[12px] px-[24px]"
+              textColor="text-white"
+            />
+          </Link>
+        </div>
+      </div>
     </FullLayout>
   );
 }
