@@ -1,7 +1,6 @@
 "use client";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "@/services/axios.service";
-import { stat } from "fs";
 export const fetchListHotel = createAsyncThunk(
   "/hotels/fetchListHotel",
   async (_, thunkAPI) => {

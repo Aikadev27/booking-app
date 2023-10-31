@@ -22,7 +22,7 @@ export default function ListHotel(props: IListHotelProps) {
             Outstanding
           </h1>
           <ul className="grid grid-cols-6 xl:grid-cols-12">
-            {listHotel.slice(0, 12).map((hotel: HotelType, index: any) => (
+            {listHotel.slice(0, 4).map((hotel: HotelType, index: any) => (
               <li
                 data-aos="fade-up"
                 key={index}

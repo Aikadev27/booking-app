@@ -1,8 +1,8 @@
 "use client";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "@/services/axios.service";
 import FullLayout from "@/layouts/FullLayout/FullLayout";
-import Wrap from "@/layouts/Wrap";
+// import Wrap from "@/layouts/Wrap";
 import { useRouter } from "next/navigation";
 import { makeReservationRoom } from "@/services/room.service";
 export interface IMakeReservationProps {

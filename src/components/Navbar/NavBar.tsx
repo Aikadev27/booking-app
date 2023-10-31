@@ -172,6 +172,15 @@ export default function NavBar(props: INavBarProps) {
                         Go Admin Page
                       </Link>
                       <Link
+                        href="/booking/history"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                        role="menuitem"
+                        tabIndex={-1}
+                        id="user-menu-item-1"
+                      >
+                        View your booking history
+                      </Link>
+                      <Link
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                         role="menuitem"
@@ -211,6 +220,15 @@ export default function NavBar(props: INavBarProps) {
                         Mange your business
                       </Link>
                       <Link
+                        href="/booking/history"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                        role="menuitem"
+                        tabIndex={-1}
+                        id="user-menu-item-1"
+                      >
+                        View your booking history
+                      </Link>
+                      <Link
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                         role="menuitem"
@@ -240,7 +258,15 @@ export default function NavBar(props: INavBarProps) {
                       >
                         Your Profile
                       </Link>
-
+                      <Link
+                        href="/booking/history"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
+                        role="menuitem"
+                        tabIndex={-1}
+                        id="user-menu-item-1"
+                      >
+                        View your booking history
+                      </Link>
                       <Link
                         href="#"
                         className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
