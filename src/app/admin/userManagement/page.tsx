@@ -8,12 +8,13 @@ import ViewAllBusiness from "@/components/ViewAllBusiness/ViewAllBusiness";
 
 import AllUser from "@/components/AllUser/AllUser";
 import NormalUser from "@/components/NormalUser/NormalUser";
+import AdminSideBar from "@/components/AdminSidebar/adminSidebar";
 
 export interface IuserManagementProps {}
 
 export default function userManagement(props: IuserManagementProps) {
   return (
-    <AdminLayout>
+    <AdminLayout sidebar={<AdminSideBar />}>
       <div className=" h-full">
         <Tab.Group>
           <Tab.List

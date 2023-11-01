@@ -6,13 +6,14 @@ import AdminLayout from "@/layouts/AdminLayout/AdminLayout";
 import BarChart from "@/components/BarChart";
 import LineChart from "@/components/LineChart";
 import AreaChart from "@/components/AreaChart";
+import AdminSideBar from "@/components/AdminSidebar/adminSidebar";
 
 export interface IAdminPageProps {}
 
 export default function AdminPage(props: IAdminPageProps) {
   useEffect(() => {});
   return (
-    <AdminLayout>
+    <AdminLayout sidebar={<AdminSideBar />}>
       <div className="grid grid-cols-2 gap-2">
         <div className="col-span-1">
           <BarChart />

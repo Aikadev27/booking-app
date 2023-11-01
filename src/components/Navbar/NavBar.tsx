@@ -217,7 +217,7 @@ export default function NavBar(props: INavBarProps) {
                         tabIndex={-1}
                         id="user-menu-item-1"
                       >
-                        Mange your business
+                        Manage your business
                       </Link>
                       <Link
                         href="/booking/history"
