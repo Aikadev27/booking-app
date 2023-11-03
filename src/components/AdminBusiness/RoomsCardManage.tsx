@@ -8,7 +8,7 @@ export interface IRoomsListProps {
   isManage?: boolean;
 }
 
-export default function RoomsList(props: IRoomsListProps) {
+export default function RoomsListManagement(props: IRoomsListProps) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -214,8 +214,8 @@ export default function RoomsList(props: IRoomsListProps) {
                         />
                       ) : (
                         <LinkConditional
-                          path={`/booking/${room._id}`}
-                          content="Book Now"
+                          path={`/businessManage/rooms/edit/${room._id}`}
+                          content="cc"
                           isAuthenticated={isAuthenticated}
                           style="text-[12px] p-1 bg-yellow-900 rounded-md my-4 md:px-6 md:py-4 text-white hover:bg-deep-orange-400 md:text-base hover:text-black"
                         />

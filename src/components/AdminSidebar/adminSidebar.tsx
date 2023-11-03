@@ -10,7 +10,7 @@ export default function AdminSideBar(props: IAdminSideBarProps) {
       <div>
         <Link href={"/"}>
           <p
-            data-aos="fade-right"
+            data-aos="fade-down"
             className="text-[10px] italic border-b border-gray-700 w-fit hover:text-cyan-500"
           >
             Back Home

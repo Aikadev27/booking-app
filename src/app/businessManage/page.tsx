@@ -33,7 +33,7 @@ export default function BusinessManage(props: IBusinessManageProps) {
                   </button>
                 )}
               </Tab>
-              <Tab as={Fragment}>
+              {/* <Tab as={Fragment}>
                 {({ selected }) => (
                   <button
                     className={`${
@@ -45,7 +45,7 @@ export default function BusinessManage(props: IBusinessManageProps) {
                     Room Management
                   </button>
                 )}
-              </Tab>
+              </Tab> */}
               <Tab as={Fragment}>
                 {({ selected }) => (
                   <button
@@ -64,9 +64,9 @@ export default function BusinessManage(props: IBusinessManageProps) {
               <Tab.Panel className={`w-full mt-4 mx-4`}>
                 <HotelManagement />
               </Tab.Panel>
-              <Tab.Panel className={`w-full mt-4 mx-4`}>
+              {/* <Tab.Panel className={`w-full mt-4 mx-4`}>
                 <RoomManagement />
-              </Tab.Panel>
+              </Tab.Panel> */}
               <Tab.Panel className={`w-full mt-4 mx-4`}>
                 <BookingManagement />
               </Tab.Panel>

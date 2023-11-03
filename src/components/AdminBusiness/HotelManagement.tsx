@@ -1,9 +1,10 @@
 "use client";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { fetchListHotel } from "@/redux/hotelSlice";
+import { fetchListHotel, fetchListHotelByOwner } from "@/redux/hotelSlice";
 import ManageHotelCard from "./ManageHotelCard";
 import SimpleLoader from "../SimpleLoader";
+import Link from "next/link";
 export interface IHotelManagementProps {}
 
 export default function HotelManagement(props: IHotelManagementProps) {
@@ -12,12 +13,33 @@ export default function HotelManagement(props: IHotelManagementProps) {
     (state) => state.hotel.listHotels
   );
   useEffect(() => {
-    dispatch(fetchListHotel());
+    dispatch(fetchListHotelByOwner());
   }, []);
   return (
     <div>
       {listHotel ? (
         <div>
+          <Link href={"/businessManage/createHotel"}>
+            <button className="flex items-center text-sm font-bold hover:text-white uppercase my-4 text-center gap-2 p-2">
+              Add new hotel
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </span>
+            </button>
+          </Link>
           <ul className="w-full grid md:grid-cols-8 md:gap-2">
             {listHotel?.map((item: HotelType, index: any) => (
               <li key={index} className="col-span-2">

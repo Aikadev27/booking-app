@@ -8,6 +8,13 @@ export const fetchListHotel = createAsyncThunk(
     return res.data;
   }
 );
+export const fetchListHotelByOwner = createAsyncThunk(
+  "/hotels/fetchListHotel",
+  async (_, thunkAPI) => {
+    const res = await axios.get("/hotel/get-hotels-by-owner");
+    return res.data;
+  }
+);
 
 export const fetchHotelsByCity = createAsyncThunk(
   "/hotels/fetchHotelsByCity",
