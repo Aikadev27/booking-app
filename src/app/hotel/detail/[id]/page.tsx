@@ -4,26 +4,51 @@ import { useEffect, useState } from "react";
 import axios from "@/services/axios.service";
 import Loader from "@/components/Loader";
 import FullLayout from "@/layouts/FullLayout/FullLayout";
-
 import Link from "next/link";
 import RoomsList from "@/components/Rooms/Rooms";
-import Wrap from "@/layouts/Wrap";
+import Reviews from "@/components/ReviewsOfHotel/Reviews";
+import { createReview } from "@/services/hotel.service";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faGlobe,
+  faHouse,
+  faLocation,
+  faLocationDot,
+  faMailBulk,
+  faPhone,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+// fa icon
+// import Wrap from "@/layouts/Wrap";
 export interface IDetailProps {
   params: any;
 }
 
 export default function Detail(props: IDetailProps) {
   const [hotel, setHotel] = useState<HotelDetail>();
-
   const hotelId = props.params.id;
+  const [editComment, setEditComment] = useState<boolean>(false);
+  const [comment, setComment] = useState<string>("");
+  const [rate, setRate] = useState<number>(5);
+  async function fetchHotelData(hotelId: string) {
+    const res = await axios.get(`/hotel/get-by-id/${hotelId}`);
+    const data = res.data;
+    setHotel(data);
+  }
+
   useEffect(() => {
-    async function fetchHotelData(hotelId: string) {
-      const res = await axios.get(`/hotel/get-by-id/${hotelId}`);
-      const data = res.data;
-      setHotel(data);
-    }
     fetchHotelData(hotelId);
   }, [hotelId]);
+
+  const handleCreateReview = async (hotelId: string) => {
+    const reviewForm = {
+      rating: rate,
+      comment: comment,
+    };
+    //  call api to post review here
+    createReview(reviewForm, hotelId);
+  };
 
   return (
     <FullLayout>
@@ -62,145 +87,55 @@ export default function Detail(props: IDetailProps) {
               </div>
               <div data-aos="fade-up" className="col-span-6 relative ">
                 <div className="mx-2 md:mx-4">
-                  <div className="flex my-1 md:my-3 gap-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-5 h-5"
-                        color="gray"
-                      >
-                        <path d="M19.006 3.705a.75.75 0 00-.512-1.41L6 6.838V3a.75.75 0 00-.75-.75h-1.5A.75.75 0 003 3v4.93l-1.006.365a.75.75 0 00.512 1.41l16.5-6z" />
-                        <path
-                          fillRule="evenodd"
-                          d="M3.019 11.115L18 5.667V9.09l4.006 1.456a.75.75 0 11-.512 1.41l-.494-.18v8.475h.75a.75.75 0 010 1.5H2.25a.75.75 0 010-1.5H3v-9.129l.019-.006zM18 20.25v-9.565l1.5.545v9.02H18zm-9-6a.75.75 0 00-.75.75v4.5c0 .414.336.75.75.75h3a.75.75 0 00.75-.75V15a.75.75 0 00-.75-.75H9z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                    <h2 className="text-base md:text-xl text-gray-800 font-bold uppercase">
+                  <div className="flex my-1 md:my-3 gap-2 md:gap-6 items-center">
+                    <FontAwesomeIcon icon={faHouse} className="text-blue-700" />
+                    <p className="text-base md:text-2xl text-gray-800 font-bold uppercase font-custom1">
                       {hotel.nameHotel}
-                    </h2>
+                    </p>
                   </div>
-                  <div className="flex my-1 md:my-3 gap-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                        color="gray"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                        />
-                      </svg>
-                    </span>
-                    <p className="text-sm md:text-xl text-gray-800 capitalize">
+                  <div className="flex my-1 md:my-3 gap-2 md:gap-6 items-center">
+                    <FontAwesomeIcon
+                      icon={faLocationDot}
+                      className="text-blue-700"
+                    />
+                    <p className="text-sm md:text-xl text-gray-800 capitalize font-custom1">
                       {hotel.location.city},{hotel.location.district},
                       {hotel.location.street}
                     </p>
                   </div>
-                  <div className="flex my-1 md:my-3 gap-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                        color="gray"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                        />
-                      </svg>
-                    </span>
-                    <p className="text-sm md:text-xl text-gray-800">
+                  <div className="flex my-1 md:my-3 gap-2 md:gap-6 items-center">
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      className="text-blue-700"
+                    />
+                    <p className="text-sm md:text-xl text-gray-800 font-custom1">
                       {hotel.emailHotel}
                     </p>
                   </div>
-                  <div className="flex my-1 md:my-3 gap-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                        color="gray"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                        />
-                      </svg>
-                    </span>
-                    <p className="text-sm md:text-xl text-gray-800">
+                  <div className="flex my-1 md:my-3 gap-2 md:gap-6 items-center">
+                    <FontAwesomeIcon icon={faPhone} className="text-blue-700" />
+                    <p className="text-sm md:text-xl text-gray-800 font-custom1">
                       {hotel.servicePhoneNumber}
                     </p>
                   </div>
-                  <div className="flex my-1 md:my-3 gap-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="true"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5 fill-yellow-500"
-                        color="yellow"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                        />
-                      </svg>
-                    </span>
-                    <p className="text-sm md:text-xl text-gray-800">
+                  <div className="flex my-1 md:my-3 gap-2 md:gap-6 items-center">
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      className="text-yellow-700"
+                    />
+                    <p className="text-sm md:text-xl text-gray-800 font-custom1">
                       {hotel.averageRating}
                     </p>
                   </div>
-                  <div className="flex my-1 md:my-3 gap-2 items-center">
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-5 h-5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941"
-                        />
-                      </svg>
-                    </span>
-                    <p className="text-sm md:text-xl text-gray-800">
+                  <div className="flex my-1 md:my-3 gap-2 md:gap-6 items-center">
+                    <FontAwesomeIcon icon={faGlobe} className="text-blue-700" />
+                    <p className="text-sm md:text-xl text-gray-800 font-custom1">
                       {hotel.rateCount}
                     </p>
                   </div>
                 </div>
                 <div className="top-3/4 absolute mx-2 md:mx-4">
-                  <p className="text-sm md:text-base text-gray-500">
+                  <p className="text-sm md:text-base text-teal-800 font-custom1">
                     {hotel.desc}
                   </p>
                 </div>
@@ -400,26 +335,26 @@ export default function Detail(props: IDetailProps) {
                 <div className="col-span-9 flex justify-between">
                   <ul className="col-span-3 ">
                     <li className="text-sm text-gray-700 my-2">
-                      Can Tho Tourist
+                      {hotel.location.city} Tourist
                     </li>
                     <li className="text-sm text-gray-700 my-2">
-                      Can Tho Market
-                    </li>
-                  </ul>
-                  <ul className="col-span-3 ">
-                    <li className="text-sm text-gray-700 my-2">
-                      Can Tho Museum
-                    </li>
-                    <li className="text-sm text-gray-700 my-2">
-                      Mekong Delta CanTho
+                      {hotel.location.city} Market
                     </li>
                   </ul>
                   <ul className="col-span-3 ">
                     <li className="text-sm text-gray-700 my-2">
-                      Khmer Can Tho ( វត្ត មុនីរង្សី) Pagoda
+                      {hotel.location.city} Museum
                     </li>
                     <li className="text-sm text-gray-700 my-2">
-                      Can Tho Love bridge
+                      Mekong Delta {hotel.location.city}
+                    </li>
+                  </ul>
+                  <ul className="col-span-3 ">
+                    <li className="text-sm text-gray-700 my-2">
+                      {hotel.location.city} ( វត្ត មុនីរង្សី) Pagoda
+                    </li>
+                    <li className="text-sm text-gray-700 my-2">
+                      {hotel.location.city} Love bridge
                     </li>
                   </ul>
                 </div>
@@ -437,6 +372,61 @@ export default function Detail(props: IDetailProps) {
                   </Link>
                 </div>
               </div>
+            </div>
+            {/* reviews here*/}
+            <p className="text-center font-bold text-sm text-orange-800 md:text-2xl py-2 tracking-wider">
+              10 Latest Of Reviews
+            </p>
+            <Reviews hotelId={hotelId} />
+
+            <div className="mx-5 md:mx-14 mt-4">
+              <div className="flex justify-end gap-2 items-center mx-2 my-2">
+                <label
+                  htmlFor="rateRange"
+                  className="text-sm text-gray-800 font-semibold"
+                >
+                  Select Rating Levels For {hotel.nameHotel}
+                </label>
+                <select
+                  className=" text-[12px] md:text-xl px-4 text-center appearance-none border-gray-500 border rounded-sm text-black font-bold"
+                  name="rateRange"
+                  id="rateRange"
+                  onChange={(e) => setRate(Number(e.target.value))}
+                >
+                  <option value={5}>5</option>
+                  <option value={4}>4</option>
+                  <option value={3}>3</option>
+                  <option value={2}>2</option>
+                  <option value={1}>1</option>
+                </select>
+                <FontAwesomeIcon icon={faStar} className="text-orange-400" />
+              </div>
+              <textarea
+                name="comment"
+                id="comment"
+                className=" block w-full text-sm  border border-gray-300 p-2 focus:border-blue-600 outline-none"
+                placeholder="Write your comment"
+                rows={5}
+                onFocus={() => setEditComment(true)}
+                onBlur={() => setEditComment(false)}
+                onChange={(e) => setComment(e.target.value)}
+              ></textarea>
+              <div className=" flex  justify-end gap-2  mx-5 md:mx-14 my-2 md:my-4">
+                <button
+                  onClick={() => handleCreateReview(hotelId)}
+                  className={`text-[12px] md:text-sm font-bold p-2 rounded-sm  ${
+                    editComment
+                      ? "bg-blue-400 cursor-pointer hover:bg-orange-400 hover:text-white"
+                      : "bg-gray-400 cursor-not-allowed"
+                  }  transition-all ease-in-out duration-150`}
+                >
+                  Post Comment
+                </button>
+                <button className="text-[12px] md:text-sm font-bold p-2 rounded-sm hover:text-white bg-gray-400 hover:bg-gray-600 transition-all ease-in-out duration-150">
+                  Cancel
+                </button>
+              </div>
+              {/* rate */}
             </div>
             {/* rooms */}
 

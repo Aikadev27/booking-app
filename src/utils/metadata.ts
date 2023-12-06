@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Booking App",
+  title: "Aika Booking",
   description: "Hotel booking app by Aikadev",
   manifest: "/manifest.json",
   icons: "/icon.png",

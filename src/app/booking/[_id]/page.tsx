@@ -161,7 +161,7 @@ export default function MakeReservation(props: IMakeReservationProps) {
                     </label>
                     <input
                       required={true}
-                      className="block w-full text-center py-3 rounded-xl border-solid border-black border px-3 text-gray-400 "
+                      className="block w-full text-center py-3 rounded-xl border-solid border-black border px-3 text-black "
                       type="date"
                       name="checkInDate"
                       id="checkInDate"
@@ -177,7 +177,7 @@ export default function MakeReservation(props: IMakeReservationProps) {
                     </label>
                     <input
                       required={true}
-                      className="block w-full text-center py-3 rounded-xl border-solid border-black border px-3 text-gray-400 "
+                      className="block w-full text-center py-3 rounded-xl border-solid border-black border px-3 text-black "
                       type="date"
                       name="checkOutDate"
                       id="checkOutDate"
@@ -192,7 +192,7 @@ export default function MakeReservation(props: IMakeReservationProps) {
                       Number of people
                     </label>
                     <input
-                      className="block w-full text-center py-3 rounded-xl border-solid border-black border px-3 text-gray-400 "
+                      className="block w-full text-center py-3 rounded-xl border-solid border-black border px-3 text-black "
                       type="number"
                       name="Quantity"
                       id="Quantity"

@@ -10,7 +10,7 @@ export default function Destinations(props: IDestinationsProps) {
   const vungTau: string = encodeURIComponent("Vũng Tàu");
   const nhaTrang: string = encodeURIComponent("Nha Trang");
   return (
-    <div>
+    <section>
       <div className="grid grid-cols-10 gap-3 mx-1">
         <div
           data-aos="fade-up"
@@ -125,6 +125,6 @@ export default function Destinations(props: IDestinationsProps) {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

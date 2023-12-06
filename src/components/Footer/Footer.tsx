@@ -7,16 +7,16 @@ export interface IFooterProps {}
 const currentYear = new Date().getFullYear();
 export default function Footer(props: IFooterProps) {
   return (
-    <footer className=" w-full">
+    <footer className="w-full p3-5 bg-black">
       <div className="mx-auto w-full max-w-7xl px-8">
-        <div className="flex w-full flex-col items-center justify-center border-t border-blue-gray-50 py-4 md:flex-row md:justify-between">
+        <div className="flex w-full flex-col items-center justify-center py-4 md:flex-row md:justify-between">
           <Typography
             variant="small"
-            className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
+            className="mb-4 text-center font-normal text-white md:mb-0"
           >
             &copy; {currentYear} <Link href="/">Aikadev Booking</Link>.
           </Typography>
-          <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
+          <div className="flex gap-4 text-white sm:justify-center">
             <Typography
               as="a"
               href="https://www.facebook.com/nhan.gas.5/"
@@ -54,6 +54,49 @@ export default function Footer(props: IFooterProps) {
                 />
               </svg>
             </Typography>
+          </div>
+        </div>
+        <div className="flex justify-between gap-6 p-2">
+          <div className="hidden md:block max-w-[30%] ">
+            <p className="uppercase text-sm font-bold text-white mb-1">
+              About project
+            </p>
+            <p className="text-[12px] text-gray-300">
+              This is a project created for learning purposes. Hotel booking and
+              hotel management topics. Please do not copy
+            </p>
+          </div>
+          <div className="flex justify-between gap-2 flex-1">
+            <ul>
+              <p className="text-sm font-bold uppercase text-white mb-1">
+                FE-Technology{" "}
+              </p>
+              <li className="text-[12px] text-gray-300">Next Js 13</li>
+              <li className="text-[12px] text-gray-300">Tailwind CSS</li>
+              <li className="text-[12px] text-gray-300">Redux Toolkit</li>
+              <li className="text-[12px] text-gray-300">React Dependencies</li>
+              <li className="text-[12px] text-gray-300">Chart JS</li>
+            </ul>
+            <ul>
+              <p className="text-sm font-bold uppercase text-white mb-1">
+                BE-Technology{" "}
+              </p>
+              <li className="text-[12px] text-gray-300">Nest Js</li>
+              <li className="text-[12px] text-gray-300">MongoDB</li>
+              <li className="text-[12px] text-gray-300">JWT for security</li>
+            </ul>
+            <ul>
+              <p className="text-sm font-bold uppercase text-white mb-1">
+                Contact
+              </p>
+              <li className="text-[12px] text-gray-300">FB: DINH HOANG NHAN</li>
+              <li className="text-[12px] text-gray-300">
+                EMAIL: aikadev27@gmail.com
+              </li>
+              <li className="text-[12px] text-gray-300">
+                Can Tho University - CNTT&TT
+              </li>
+            </ul>
           </div>
         </div>
       </div>

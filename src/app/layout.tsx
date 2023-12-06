@@ -1,8 +1,14 @@
 "use client";
+
 // aos scroll view
 import AOS from "aos";
 import "aos/dist/aos.css";
 import ReduxProvider from "@/redux/provider";
+
+// import font awesome icon
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 
 // global style
 import "@/styles/globals.css";
@@ -10,22 +16,15 @@ import "@/styles/globals.css";
 // import { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { metadata } from "@/utils/metadata";
-// export const metadata: Metadata = {
-//   title: "Booking App",
-//   description: "Hotel booking app by Aikadev",
-//   manifest: "/manifest.json",
-//   icons: "/icon.png",
-//   themeColor: "#FFFFFF",
-// };
 
 // toastify
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+
 // material
 import { ThemeProvider } from "@material-tailwind/react";
 import { useEffect } from "react";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export interface IRootLayoutProps {
@@ -66,7 +65,7 @@ export default function RootLayout(props: IRootLayoutProps) {
         </head>
         <ThemeProvider>
           <body className={inter.className}>
-            <div className="">{props.children}</div>
+            <div className="font-Poppins">{props.children}</div>
             <ToastContainer />
           </body>
         </ThemeProvider>

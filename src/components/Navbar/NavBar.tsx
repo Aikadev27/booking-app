@@ -12,16 +12,35 @@ export interface INavBarProps {}
 export default function NavBar(props: INavBarProps) {
   const user = useAppSelector<any>((state) => state.auth.login?.user);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  // handle scrolling --> set color for navbar
+  const [scrolling, setScrolling] = useState<boolean>(false);
+
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (token) {
       setIsAuthenticated(true);
     }
   }, []);
+
+  // handle scrolling
+  useEffect(() => {
+    const handleScrolling = () => {
+      const isTop = window.scrollY < 500;
+      if (isTop !== scrolling) {
+        setScrolling(isTop);
+      }
+    };
+    document.addEventListener("scroll", handleScrolling);
+
+    return () => {
+      document.removeEventListener("scroll", handleScrolling);
+    };
+  }, [scrolling]);
+
   const [dropdownFlag, setDropdownFlag] = useState(false);
   const [dropMobile, setDropMobile] = useState(false);
   const dispatch = useAppDispatch();
-  const router = useRouter();
+  // const router = useRouter();
 
   const handleDropdown = () => {
     setDropdownFlag(!dropdownFlag);
@@ -42,7 +61,9 @@ export default function NavBar(props: INavBarProps) {
     <Wrap>
       <nav
         data-aos="fade-left"
-        className="bg-white fixed top-0 right-0 left-0 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] z-50"
+        className={`${
+          scrolling ? "bg-white " : "bg-gray-200 bg-opacity-70 "
+        } fixed top-0 right-0 left-0  z-50 transition-all `}
         id="navbar"
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -50,12 +71,12 @@ export default function NavBar(props: INavBarProps) {
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               <button
                 type="button"
-                className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                className="relative inline-flex items-center justify-center rounded-md p-2 text-blue-400 font-bold hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
                 onClick={handleDropMobile}
               >
-                <span className="absolute -inset-0.5"></span>
+                <span className="absolute -inset-0.5 "></span>
                 <span className="sr-only">Open main menu</span>
 
                 <svg
@@ -107,12 +128,12 @@ export default function NavBar(props: INavBarProps) {
                     content="Book Now"
                     path="/hotel"
                     isAuthenticated={isAuthenticated}
-                    style="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    style="text-orange-700  hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-bold"
                   />
 
                   <Link
                     href="/about"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                    className="text-blue-700  hover:bg-blue-300 hover:text-white rounded-md px-3 py-2 text-sm font-bold"
                   >
                     About Us
                   </Link>
@@ -250,7 +271,7 @@ export default function NavBar(props: INavBarProps) {
                       tabIndex={-1}
                     >
                       <Link
-                        href="/user/userProfile"
+                        href="/user/profile"
                         className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                         role="menuitem"
                         tabIndex={-1}

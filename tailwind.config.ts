@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 const config: Config = {
   content: [
@@ -12,6 +13,9 @@ const config: Config = {
         doodle:
           "url('https://wallpapers.com/images/hd/doodle-glowing-artwork-vhu5ts3hs8bxyq5a.jpg')",
       },
+      // fontFamily: {
+      //   Poppins: ["Space Mono", ...defaultTheme.fontFamily.sans],
+      // },
     },
   },
   plugins: [],
@@ -26,7 +30,12 @@ module.exports = withMT({
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Poppins: ["Josefin Sans", ...defaultTheme.fontFamily.sans],
+        custom1: ["Space Mono", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 });

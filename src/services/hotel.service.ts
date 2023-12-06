@@ -49,7 +49,7 @@ export const deleteOneHotel = async (hotelId: string) => {
     const message = res.data.message;
     toast.success(`${message}`, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -77,7 +77,7 @@ export const updateHotelInfo = async (formData: any, hotelId: string) => {
     const res = await axios.patch(`/hotel/update-by-id/${hotelId}`, formData);
     toast.success(`${res.data.message}`, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -95,7 +95,7 @@ export const createHotel = async (createFormData: any) => {
     const res = await axios.post(`/hotel/create-hotel`, createFormData);
     toast.success(`create success`, {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -116,5 +116,110 @@ export const createHotel = async (createFormData: any) => {
       theme: "colored",
     });
     throw error;
+  }
+};
+
+// reviews
+
+export const getReviewsOfHotel = async (HotelId: string) => {
+  try {
+    const res = await axios.get(`/rating/get-reviews-by-hotel-id/${HotelId}`);
+    const data = res.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const createReview = async (reviewForm: any, hotelId: string) => {
+  try {
+    const res = await axios.post(
+      `/rating/rating-by-id/${hotelId}/create`,
+      reviewForm
+    );
+    const message = res.data.message;
+    console.log("message from backend", message);
+    toast.success(`${message}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  } catch (error: any) {
+    toast.error(`${error.message}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  }
+};
+
+export const deleteReviewById = async (id: string) => {
+  try {
+    const res = await axios.delete(`/rating/rating-by-id/${id}/delete`);
+    const responseMessage = res.data.message;
+    toast.success(`${responseMessage}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  } catch (error: any) {
+    toast.error(`${error.message}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  }
+};
+
+// add feature images
+
+export const addFeatureImages = async (images: string[], hotelId: string) => {
+  try {
+    const res = await axios.post(`/hotel/add-img-by-id/${hotelId}`, {
+      imageUrl: images,
+    });
+    const responseMessage = res.data.message;
+    toast.success(`${responseMessage}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
+  } catch (error: any) {
+    toast.error(`${error.message}`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    });
   }
 };

@@ -38,9 +38,9 @@ export const updateInfo = async (userId: string, formData: any) => {
       progress: undefined,
       theme: "colored",
     });
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 3000);
   } catch (error: any) {
     toast.error(`${error.message}`, {
       position: "top-right",

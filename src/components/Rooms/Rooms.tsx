@@ -24,7 +24,7 @@ export default function RoomsList(props: IRoomsListProps) {
           <li
             data-aos="fade-up"
             key={index}
-            className="bg-[#e5e5e5] p-2 my-4 rounded-md"
+            className="bg-[#7dbcf3] bg-opacity-25 p-2 my-4 rounded-md"
           >
             <h1 className="text-sm md:text-xl font-bold uppercase mb-[15px]">
               TYPE: {room.roomType}

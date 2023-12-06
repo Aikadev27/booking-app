@@ -1,8 +1,20 @@
 "use client";
 import SimpleLoader from "@/components/SimpleLoader";
-import { fetchHotelInfo, updateHotelInfo } from "@/services/hotel.service";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import FullLayout from "@/layouts/FullLayout/FullLayout";
+import {
+  addFeatureImages,
+  fetchHotelInfo,
+  updateHotelInfo,
+} from "@/services/hotel.service";
+import { ChangeEvent, useEffect, useState } from "react";
+// font icon
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircle,
+  faCirclePlus,
+  faSlash,
+} from "@fortawesome/free-solid-svg-icons";
+import { convertToBase64 } from "@/services/handleFiles.service";
 export interface IEditHotelProps {
   params: any;
 }
@@ -18,9 +30,16 @@ export default function EditHotel(props: IEditHotelProps) {
   const [street, setStreet] = useState<string>();
   const [decs, setDecs] = useState<string>();
   const [number, setNumber] = useState<string>();
+
+  // List feature Images
+  const [featureImg, setFeatureImg] = useState<string[]>([]);
+  const [imagesWillSended, setImagesWillSended] = useState<string[]>([]);
+  // toggle 2 button
+  const [uploadImage, setUploadImage] = useState<boolean>(false);
   useEffect(() => {
     async function fetchOneHotel(hotelId: string) {
       const res = await fetchHotelInfo(hotelId);
+      setFeatureImg(res.featuredImageUrl);
       setHotel(res);
     }
     fetchOneHotel(props.params._id);
@@ -40,119 +59,96 @@ export default function EditHotel(props: IEditHotelProps) {
     };
     updateHotelInfo(formData, id);
   };
+
+  // cancel  choose new image
+  const canCelChooseImg = () => {
+    setFeatureImg(hotel?.featuredImageUrl || []);
+    setImagesWillSended([]);
+    setUploadImage(false);
+  };
+
+  const handleSelectImagesChange = async (
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
+    const files = event.target.files;
+    if (files) {
+      const newFiles: string[] = [];
+
+      for (const file of files) {
+        const base64Image = await convertToBase64(file);
+        newFiles.push(base64Image);
+      }
+
+      setFeatureImg((prevFiles) =>
+        prevFiles ? [...prevFiles, ...newFiles] : newFiles
+      );
+      setImagesWillSended((prevFiles) =>
+        prevFiles ? [...prevFiles, ...newFiles] : newFiles
+      );
+    }
+  };
+
+  const handleUploadImages = () => {
+    addFeatureImages(imagesWillSended, id);
+  };
+
   return (
-    <div className="bg-[url('https://wallpapers.com/images/hd/doodle-glowing-artwork-vhu5ts3hs8bxyq5a.jpg')]">
-      <div className="container mx-auto h-screen flex justify-center items-center ">
+    <FullLayout>
+      <div className="container mx-auto h-screen mt-[65px]">
         {hotel ? (
-          <div className="w-[80%]  bg-teal-900 pb-4">
-            <div>
-              <img
-                src={hotel.featuredImageUrl[0]}
-                alt=""
-                className="h-[300px] w-full object-cover"
-              />
-            </div>
-            <form className="mt-3" onSubmit={handleUpdateHotel}>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  Name Hotel
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setNameHotel(e.target.value)}
-                  defaultValue={`${hotel.nameHotel}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
+          <div>
+            <div className="mx-2">
+              <div className="flex justify-between items-center">
+                <p>Photo Category</p>
+                <div>
+                  <label
+                    className="p-2"
+                    htmlFor="addImage"
+                    onClick={() => setUploadImage(true)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faCirclePlus}
+                      className="md:text-2xl text-gray-700 text-xl hover:text-blue-600  cursor-pointer"
+                    />
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    multiple={true}
+                    className="hidden"
+                    id="addImage"
+                    onChange={handleSelectImagesChange}
+                  />
+                </div>
               </div>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  defaultValue={`${hotel.emailHotel}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
+              <div className="grid grid-cols-4 gap-2 ">
+                {featureImg?.map((image, index) => (
+                  <img
+                    src={`${image}`}
+                    alt="Image"
+                    key={index}
+                    className=" h-[100px]  md:h-[200px] object-cover col-span-1 w-full"
+                  />
+                ))}
               </div>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  City
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setCity(e.target.value)}
-                  defaultValue={`${hotel.location.city}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
-              </div>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  District
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setDistrict(e.target.value)}
-                  defaultValue={`${hotel.location.district}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
-              </div>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  Street
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setStreet(e.target.value)}
-                  defaultValue={`${hotel.location.street}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
-              </div>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  Sub Address
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setSubAdd(e.target.value)}
-                  defaultValue={`${hotel.location.subAddress}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
-              </div>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  Description
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setDecs(e.target.value)}
-                  defaultValue={`${hotel.desc}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
-              </div>
-              <div className="flex gap-3 mx-2 my-2">
-                <label className="p-1 text-sm font-bold w-[200px] text-white">
-                  Service Number
-                </label>
-                <input
-                  type="text"
-                  onChange={(e) => setNumber(e.target.value)}
-                  defaultValue={`${hotel.servicePhoneNumber}`}
-                  className="flex-1 px-1 py-1 text-sm rounded"
-                />
-              </div>
-              <div className="text-center my-2">
-                <button className="p-2 bg-pink-600 rounded text-center hover:bg-pink-300">
-                  Update
+              <div
+                className={`${
+                  uploadImage ? "block" : "hidden"
+                } flex justify-end gap-4 my-2`}
+              >
+                <button
+                  className="p-1 md:p-2 bg-blue-700 hover:bg-blue-500 rounded-md text-white"
+                  onClick={handleUploadImages}
+                >
+                  upload
+                </button>
+                <button
+                  className="p-1 md:p-2 bg-gray-700 hover:bg-gray-500 rounded-md text-white"
+                  onClick={canCelChooseImg}
+                >
+                  cancel
                 </button>
               </div>
-            </form>
-            <div className="text-right mr-3">
-              <Link href={"/businessManage"}>
-                <button className="text-white font-bold  italic underline hover:text-orange-600 ">
-                  back
-                </button>
-              </Link>
             </div>
           </div>
         ) : (
@@ -161,6 +157,6 @@ export default function EditHotel(props: IEditHotelProps) {
           </div>
         )}
       </div>
-    </div>
+    </FullLayout>
   );
 }

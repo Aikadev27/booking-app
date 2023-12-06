@@ -15,14 +15,14 @@ export default function ListHotel(props: IListHotelProps) {
   }, []);
 
   return (
-    <div>
+    <section>
       {listHotel ? (
         <div>
           <h1 className="text-center xl:text-left text-base uppercase xl:text-2xl font-bold text-black xl:ml-5">
             Outstanding
           </h1>
           <ul className="grid grid-cols-6 xl:grid-cols-12">
-            {listHotel.slice(0, 4).map((hotel: HotelType, index: any) => (
+            {listHotel.slice(0, 8).map((hotel: HotelType, index: any) => (
               <li
                 data-aos="fade-up"
                 key={index}
@@ -44,6 +44,6 @@ export default function ListHotel(props: IListHotelProps) {
       ) : (
         <Loader />
       )}
-    </div>
+    </section>
   );
 }
