@@ -1,20 +1,23 @@
 "use client";
 
+import FullLayout from "@/layouts/FullLayout/FullLayout";
 import { createHotel } from "@/services/hotel.service";
-import Link from "next/link";
+import { faPenToSquare, faX } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 export interface ICreateHotelProps {}
 
 export default function CreateHotel(props: ICreateHotelProps) {
-  const [nameHotel, setNameHotel] = useState<string>();
-  const [email, setEmail] = useState<string>();
-  const [city, setCity] = useState<string>();
-  const [district, setDistrict] = useState<string>();
-  const [street, setStreet] = useState<string>();
-  const [decs, setDecs] = useState<string>();
-  const [number, setNumber] = useState<string>();
-  const [img, setImg] = useState<string>();
+  const [nameHotel, setNameHotel] = useState<string | null>(null);
+  const [email, setEmail] = useState<string | null>(null);
+  const [city, setCity] = useState<string | null>(null);
+  const [district, setDistrict] = useState<string | null>(null);
+  const [street, setStreet] = useState<string | null>(null);
+  const [decs, setDecs] = useState<string | null>(null);
+  const [number, setNumber] = useState<string | null>(null);
+  const [img, setImg] = useState<string | null>();
 
+  const [showImage, setShowImage] = useState<boolean>(false);
   const handleCreateHotel = async (e: any) => {
     e.preventDefault();
     const formData = {
@@ -28,115 +31,251 @@ export default function CreateHotel(props: ICreateHotelProps) {
       featuredImageUrl: img,
     };
     createHotel(formData);
+    console.log(formData);
   };
+
+  const handleSelectImage = async (e: any) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(e.target.files[0]);
+    fileReader.onload = () => {
+      setImg(fileReader.result?.toString());
+    };
+
+    fileReader.onerror = (error) => {
+      console.log("error", error);
+    };
+
+    setShowImage(true);
+  };
+
+  const handleRemoveCurrentImage = () => {
+    setShowImage(false);
+    setImg(null);
+  };
+
+  const handleCancelForm = (e: any) => {
+    e.preventDefault();
+    setNameHotel("");
+    setEmail("");
+    setCity("");
+    setDistrict("");
+    setStreet("");
+    setDecs("");
+    setNumber("");
+    setImg("");
+    setShowImage(false);
+    location.reload();
+  };
+
   return (
-    <div className="flex flex-col justify-center items-center h-screen bg-[url('https://wallpapers.com/images/hd/doodle-glowing-artwork-vhu5ts3hs8bxyq5a.jpg')]">
-      <h1 className="text-white py-20 uppercase font-bold text-2xl tracking-[0.2rem]">
-        Create New Hotel
-      </h1>
-      <form
-        onSubmit={handleCreateHotel}
-        className="container bg-blue-gray-200  mx-auto py-8 rounded-sm"
-      >
-        <div className="text-left ml-3">
-          <Link href={"/businessManage"}>
-            <button className="text-white font-bold  italic underline hover:text-orange-600 ">
-              back
+    <FullLayout>
+      <div className="mt-[65px] min-h-screen container mx-auto">
+        <h1 className="text-center font-bold text-sm md:text-2xl text-green-800">
+          CREATE HOTEL FORM
+        </h1>
+        <form className="my-4 md:my-20 mx-2 md:mx-10  border-[1px] border-gray-200 p-2 md:p-4 rounded">
+          {/* name */}
+          <div className="p-1 my-2">
+            <label
+              htmlFor="nameHotel"
+              className="text-sm  md:text-xl text-gray-700 py-1 cursor-pointer"
+            >
+              Name Hotel
+            </label>
+            <br />
+            <input
+              required={true}
+              type="text"
+              name="nameHotel"
+              id="nameHotel"
+              placeholder="Enter Name Hotel"
+              onChange={(e) => setNameHotel(e.target.value)}
+              className="text-black py-1 md:py-2 w-full px-2 my-1 md:my-3 focus:outline-green-400"
+            />
+          </div>
+          {/* email */}
+          <div className="p-1 my-2">
+            <label
+              htmlFor="email"
+              className="text-sm  md:text-xl text-gray-700 py-1 cursor-pointer"
+            >
+              Email
+            </label>
+            <br />
+            <input
+              required={true}
+              type="email"
+              name="email"
+              id="email"
+              placeholder="hotel1234@gmail.com"
+              onChange={(e) => setEmail(e.target.value)}
+              className="text-black py-1 md:py-2 w-full px-2 my-1 md:my-3 focus:outline-green-400"
+            />
+          </div>
+          {/* city */}
+          <div className="p-1 my-2">
+            <label
+              htmlFor="city"
+              className="text-sm  md:text-xl text-gray-700 py-1 cursor-pointer"
+            >
+              City
+            </label>
+            <br />
+            <select
+              name="city"
+              id="city"
+              onChange={(e) => setCity(e.target.value)}
+              className="text-black py-1 md:py-2 w-full px-2 my-1 md:my-3 focus:outline-green-400"
+            >
+              <option value="">-- Choose A City in List --</option>
+              <option value="Cần Thơ">Cần Thơ</option>
+              <option value="Đà Lạt">Đà Lạt</option>
+              <option value="Vũng Tàu">Vũng Tàu</option>
+              <option value="Đà Nẵng">Đà Nẵng</option>
+              <option value="Nha Trang">Nha Trang</option>
+            </select>
+          </div>
+          {/* District */}
+          <div className="p-1 my-2">
+            <label
+              htmlFor="district"
+              className="text-sm  md:text-xl text-gray-700 py-1 cursor-pointer"
+            >
+              District
+            </label>
+            <br />
+            <input
+              required={true}
+              type="text"
+              name="district"
+              id="district"
+              placeholder="example: Ninh Kieu."
+              onChange={(e) => setDistrict(e.target.value)}
+              className="text-black py-1 md:py-2 w-full px-2 my-1 md:my-3 focus:outline-green-400"
+            />
+          </div>
+          {/* street */}
+          <div className="p-1 my-2">
+            <label
+              htmlFor="street"
+              className="text-sm  md:text-xl text-gray-700 py-1 cursor-pointer"
+            >
+              Street
+            </label>
+            <br />
+            <input
+              required={true}
+              type="text"
+              name="street"
+              id="street"
+              placeholder="example: Mau Than street"
+              onChange={(e) => setStreet(e.target.value)}
+              className="text-black py-1 md:py-2 w-full px-2 my-1 md:my-3 focus:outline-green-400"
+            />
+          </div>
+          {/* number */}
+          <div className="p-1 my-2">
+            <label
+              htmlFor="number"
+              className="text-sm  md:text-xl text-gray-700 py-1 cursor-pointer"
+            >
+              Service Phone Number
+            </label>
+            <br />
+            <input
+              required={true}
+              type="text"
+              name="number"
+              id="number"
+              placeholder="+84 123 456"
+              onChange={(e) => setNumber(e.target.value)}
+              className="text-black py-1 md:py-2 w-full px-2 my-1 md:my-3 focus:outline-green-400"
+            />
+          </div>
+          {/* desc */}
+          <div className="p-1 my-2">
+            <label
+              htmlFor="desc"
+              className="text-sm  md:text-xl text-gray-700 py-1 cursor-pointer"
+            >
+              Descriptions
+            </label>
+            <br />
+            <textarea
+              name="desc"
+              id="desc"
+              placeholder="Write some desc for hotel you want to create (non-required)"
+              onChange={(e) => setDecs(e.target.value)}
+              className="text-black py-1 md:py-2 w-full px-2 my-1 md:my-3 focus:outline-green-400"
+            />
+          </div>
+
+          {/* img */}
+          <div className="p-1 my-2">
+            <div>
+              <label
+                htmlFor="img"
+                className="text-sm   md:text-xl text-white bg-black  cursor-pointer px-2 py-3 border border-blue-600 rounded-lg my-2 hover:bg-opacity-80 hover:text-green-500"
+              >
+                Choose an image
+                <FontAwesomeIcon icon={faPenToSquare} className="ml-2" />
+              </label>
+              <br />
+              <input
+                required={true}
+                type="file"
+                name="img"
+                id="img"
+                accept="image/*"
+                defaultValue={img?.toString()}
+                onChange={handleSelectImage}
+                className="text-black py-1 md:py-2  px-2 my-1 md:my-3 focus:outline-green-400 hidden"
+              />
+            </div>
+            <div className="relative my-2">
+              <img
+                src={img?.toString()}
+                alt="Image from local"
+                className={`${
+                  showImage
+                    ? "block w-full object-cover rounded-md max-h-[300px] my-4"
+                    : "hidden"
+                } `}
+              />
+              <span
+                className={`${
+                  showImage
+                    ? "absolute top-2 right-2 p-2 hover:bg-gray-200 rounded "
+                    : "hidden"
+                }`}
+                onClick={handleRemoveCurrentImage}
+              >
+                {" "}
+                <FontAwesomeIcon
+                  icon={faX}
+                  className="text-red-500 text-xl md:text-2xl hover:font-bold cursor-pointer"
+                />
+              </span>
+            </div>
+          </div>
+
+          {/* 2button */}
+          <div className="flex justify-center gap-3 mx-2">
+            <button
+              onClick={handleCreateHotel}
+              className="px-2 py-3 bg-blue-700 text-white font-bold hover:bg-orange-700 rounded-md text-center text-sm md:text-xl"
+            >
+              Create
             </button>
-          </Link>
-        </div>
-        <h1 className="uppercase text-base py-2 border-b text-orange-800 border-gray-300 text-center font-bold">
-          Information
-        </h1>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">
-            Enter Name Hotel
-          </label>
-          <input
-            onChange={(e) => setNameHotel(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="text"
-            required
-          />
-        </div>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">
-            Enter Email Hotel
-          </label>
-          <input
-            onChange={(e) => setEmail(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="email"
-            required
-          />
-        </div>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">
-            Enter Description
-          </label>
-          <input
-            onChange={(e) => setDecs(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="text"
-          />
-        </div>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">
-            Enter Temp Image URL
-          </label>
-          <input
-            onChange={(e) => setImg(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="text"
-            required
-          />
-        </div>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">
-            Enter Service Phone Number
-          </label>
-          <input
-            onChange={(e) => setNumber(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="text"
-            required
-          />
-        </div>
-        <h1 className="uppercase text-base py-2 border-b text-light-blue-500 border-gray-300 text-center font-bold">
-          Address
-        </h1>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">Enter City</label>
-          <input
-            onChange={(e) => setCity(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="text"
-          />
-        </div>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">Enter District</label>
-          <input
-            onChange={(e) => setDistrict(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="text"
-          />
-        </div>
-        <div className="grid grid-cols-3 my-3 mx-2">
-          <label className="col-span-1 text-sm uppercase">
-            Enter Street Number
-          </label>
-          <input
-            onChange={(e) => setStreet(e.target.value)}
-            className="col-span-2 py-2 mx-1 px-1 text-sm rounded"
-            type="text"
-          />
-        </div>
-        <div className="text-right mt-6 mr-4">
-          <button className="p-2 bg-orange-800 rounded-sm hover:bg-orange-400 text-white font-bold">
-            Create
-          </button>
-        </div>
-      </form>
-    </div>
+            <button
+              onClick={handleCancelForm}
+              className="px-2 py-3 bg-gray-700 text-white font-bold hover:bg-black rounded-md text-center text-sm md:text-xl"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </FullLayout>
   );
 }

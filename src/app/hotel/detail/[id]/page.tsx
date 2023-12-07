@@ -68,12 +68,12 @@ export default function Detail(props: IDetailProps) {
                 </div>
                 {/* list img */}
                 <div className="overflow-x-auto">
-                  <ul className="flex flex-nowrap gap-2">
+                  <ul className="flex flex-nowrap gap-2 overflow-x-auto  w-full ">
                     {hotel.featuredImageUrl.map((img, index) => (
                       <li
                         data-aos="fade-up"
                         key={index}
-                        className="h-[60px] md:h-[150px] w-[50%] md:w-[30%] my-3"
+                        className="h-[60px] md:h-[150px] w-[50%] md:w-[30%] my-3 shrink-0"
                       >
                         <img
                           src={img}
@@ -134,8 +134,8 @@ export default function Detail(props: IDetailProps) {
                     </p>
                   </div>
                 </div>
-                <div className="top-3/4 absolute mx-2 md:mx-4">
-                  <p className="text-sm md:text-base text-teal-800 font-custom1">
+                <div className="mx-2 md:mx-4">
+                  <p className="text-sm md:text-base text-teal-800 font-custom1 appearance-none overflow-y-auto max-h-[100px] md:max-h-[80%] md:overflow-y-auto">
                     {hotel.desc}
                   </p>
                 </div>
