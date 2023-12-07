@@ -77,7 +77,7 @@ export const createNewRoom = async (hotelId: string, formData: any) => {
       `/hotel/room/create-room-by-hotel-id/${hotelId}`,
       formData
     );
-    toast.success(`${res.data.message} `, {
+    toast.success("create new room success", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,

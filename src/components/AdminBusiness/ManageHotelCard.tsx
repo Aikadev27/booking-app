@@ -19,7 +19,7 @@ export default function ManageHotelCard(props: IManageHotelCardProps) {
   };
   return (
     <div
-      className="pb-3 pt-1 px-1 bg-white m-1 rounded shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] min-h-[400px]"
+      className="pb-3 pt-1  bg-white m-1 rounded shadow-[rgba(50,_50,_105,_0.15)_0px_2px_5px_0px,_rgba(0,_0,_0,_0.05)_0px_1px_1px_0px] min-h-[400px]"
       data-aos="fade-up"
     >
       <div>

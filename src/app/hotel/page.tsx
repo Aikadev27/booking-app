@@ -58,7 +58,7 @@ export default function Hotel(props: IHotelProps) {
 
   return (
     <FullLayout>
-      <div className="h-screen mt-[80px]">
+      <div className="min-h-screen mt-[80px]">
         <div className="md:container md:mx-auto md:grid md:grid-cols-4 md:gap-2 py-4">
           <div className="md:col-span-2 flex justify-center items-center gap-3">
             <input

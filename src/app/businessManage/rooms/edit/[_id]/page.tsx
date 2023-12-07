@@ -2,7 +2,8 @@
 import SimpleLoader from "@/components/SimpleLoader";
 import FullLayout from "@/layouts/FullLayout/FullLayout";
 import { deleteRoom, fetchRoomById, updateRoom } from "@/services/room.service";
-import Link from "next/link";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 export interface IEditRoomProps {
@@ -12,18 +13,25 @@ export interface IEditRoomProps {
 export default function EditRoom(props: IEditRoomProps) {
   const roomId = props.params._id;
   const router = useRouter();
+
   const [room, setRoom] = useState<RoomType>();
+
   const [number, setNumber] = useState<string>();
   const [floor, setFloor] = useState<string>();
   const [type, setType] = useState<string>();
   const [price, setPrice] = useState<number>();
   const [desc, setDesc] = useState<string>();
+  const [img, setImg] = useState<string>();
+
   const [status, setStatus] = useState<boolean>();
+  const [editImg, setEditImg] = useState<boolean>(false);
+
+  async function getRoom(roomId: string) {
+    const res = await fetchRoomById(roomId);
+    setRoom(res);
+    setImg(res.imageUrl[0]);
+  }
   useEffect(() => {
-    async function getRoom(roomId: string) {
-      const res = await fetchRoomById(roomId);
-      setRoom(res);
-    }
     getRoom(roomId);
   }, []);
 
@@ -35,14 +43,32 @@ export default function EditRoom(props: IEditRoomProps) {
       desc: desc,
       pricePerNight: price,
       floor: floor,
+      imageUrl: img,
     };
     updateRoom(roomId, formData);
+    // console.log(formData);
   };
 
   const handleStatus = (e: any) => {
     const st = e.target.value;
     if (st !== status) {
       setStatus(!status);
+    }
+  };
+
+  const handleSelectImage = async (e: any) => {
+    const fileReader = new FileReader();
+
+    // Check if there are files
+    if (e.target.files && e.target.files.length > 0) {
+      // Read the first file from the array
+      const selectedFile = e.target.files[0];
+
+      fileReader.readAsDataURL(selectedFile);
+
+      fileReader.onload = () => {
+        setImg(fileReader.result?.toString());
+      };
     }
   };
 
@@ -60,142 +86,180 @@ export default function EditRoom(props: IEditRoomProps) {
   };
   return (
     <FullLayout>
-      <div>
+      <div className="mt-[65px] min-h-screen container mx-auto">
         {room ? (
-          <div className="bg-gray-300 ">
-            <div className="container mx-auto h-screen flex justify-center items-center flex-col">
-              <form
-                action=""
-                className="bg-blue-800 w-[70%] py-20 rounded shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]"
-              >
-                <div className="text-left ml-2">
-                  <Link href={"/businessManage"}>
-                    <button className="text-white font-bold  italic underline hover:text-orange-600 ">
-                      back
-                    </button>
-                  </Link>
-                </div>
-                <div className="grid grid-cols-3  gap-4  mx-4 p-4 ">
-                  <label
-                    htmlFor=""
-                    className="col-span-1 text-white font-bold text-sm flex items-center"
-                  >
-                    Room Number
-                  </label>
-                  <input
-                    onChange={(e) => setNumber(e.target.value)}
-                    className="col-span-2 w-full p-2 rounded-sm"
-                    type="text"
-                    name=""
-                    id=""
-                    defaultValue={room.roomNumber}
-                  />
-                </div>
-                <div className="grid grid-cols-3  gap-4  mx-4 p-4 ">
-                  <label
-                    htmlFor=""
-                    className="col-span-1 text-white font-bold text-sm flex items-center"
-                  >
-                    Room type
-                  </label>
-                  <select
-                    onChange={(e) => setType(e.target.value)}
-                    className="col-span-2 w-full p-2 rounded-sm"
-                    defaultValue={room.roomType}
-                  >
-                    <option value="">{room.roomType}</option>
-                    <option value="single">Single</option>
-                    <option value="couple">Couple</option>
-                    <option value="family">Family</option>
-                  </select>
-                </div>
-                <div className="grid grid-cols-3  gap-4  mx-4 p-4 ">
-                  <label
-                    htmlFor=""
-                    className="col-span-1 text-white font-bold text-sm flex items-center"
-                  >
-                    Price / Night
-                  </label>
-                  <input
-                    onChange={(e) => setPrice(Number(e.target.value))}
-                    className="col-span-2 w-full p-2 rounded-sm"
-                    type="text"
-                    name=""
-                    id=""
-                    defaultValue={room.pricePerNight + " $"}
-                  />
-                </div>
-                <div className="grid grid-cols-3  gap-4  mx-4 p-4 ">
-                  <label
-                    htmlFor=""
-                    className="col-span-1 text-white font-bold text-sm flex items-center"
-                  >
-                    Descriptions
-                  </label>
-                  <textarea
-                    onChange={(e) => setDesc(e.target.value)}
-                    className="col-span-2 w-full p-2 rounded-sm"
-                    name=""
-                    id=""
-                    defaultValue={room.desc}
-                  />
-                </div>
+          <div className="mx-2 md:mx-6 my-3">
+            <h1 className="my-4 text-center text-xl md:text-2xl font-bold text-blue-700 ">
+              Edit Room Form
+            </h1>
 
-                <div className="grid grid-cols-3  gap-4  mx-4 p-4 ">
-                  <label
-                    htmlFor=""
-                    className="col-span-1 text-white font-bold text-sm flex items-center"
-                  >
-                    Floor At
-                  </label>
-                  <input
-                    onChange={(e) => setFloor(e.target.value)}
-                    className="col-span-2 w-full p-2 rounded-sm"
-                    name=""
-                    type="text"
-                    id=""
-                    defaultValue={room.floor}
-                  />
+            <form className="my-4 md:my-20 mx-2 md:mx-10  border-[1px] border-gray-200 p-2 md:p-4 rounded">
+              <div className="relative">
+                <img
+                  src={img?.toString()}
+                  alt="Current Image"
+                  className="w-full max-h-[300px] object-cover hover:cursor-pointer rounded-md"
+                  onMouseMove={() => setEditImg(true)}
+                />
+                <div
+                  onMouseLeave={() => setEditImg(false)}
+                  className={`${
+                    editImg
+                      ? "absolute top-0 left-0 right-0 bottom-0 z-10 bg-gray-50 bg-opacity-80 flex justify-center items-center"
+                      : "hidden"
+                  } cursor-pointer`}
+                >
+                  <div>
+                    <label
+                      htmlFor="editImg"
+                      className="cursor-pointer text-xl md:text-2xl"
+                    >
+                      Edit
+                      <FontAwesomeIcon icon={faPen} className=" ml-1" />
+                    </label>
+                    <input
+                      type="file"
+                      name="editImg"
+                      id="editImg"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleSelectImage}
+                    />
+                  </div>
                 </div>
-
-                <div className="grid grid-cols-3  gap-4  mx-4 p-4 ">
-                  <label
-                    htmlFor=""
-                    className="col-span-1 text-white font-bold text-sm flex items-center"
-                  >
-                    Status
-                  </label>
-                  <select
-                    onChange={(e) => handleStatus(e)}
-                    className="col-span-2 w-full p-2 rounded-sm"
-                    name=""
-                    id=""
-                    defaultValue={room.bookingStatus ? "true" : "false"}
-                  >
-                    <option value="true">
-                      {room.bookingStatus ? "Unavailable" : "Available"}
-                    </option>
-                    <option value="false">
-                      {room.bookingStatus ? "Available" : "Unavailable"}
-                    </option>
-                  </select>
-                </div>
-                <div className=" mr-2 col-start-3 gap-4 flex justify-end items-center">
+              </div>
+              <div className="p-1 my-1 md:my-2">
+                <label
+                  htmlFor="number"
+                  className="text-[12px] md:text-sm font-bold text-gray-600"
+                >
+                  Room Number
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="number"
+                  id="number"
+                  defaultValue={room.roomNumber}
+                  onChange={(e) => setNumber(e.target.value)}
+                  className="w-full p-2 my-2 bg-blue-gray-50 rounded-md text-black focus:bg-blue-gray-100 focus:outline-blue-gray-700 text-xl md:text-2xl"
+                />
+              </div>
+              <div className="p-1 my-1 md:my-2">
+                <label
+                  htmlFor="floor"
+                  className="text-[12px] md:text-sm font-bold text-gray-600"
+                >
+                  Floor at
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="floor"
+                  id="floor"
+                  defaultValue={room.floor}
+                  onChange={(e) => setFloor(e.target.value)}
+                  className="w-full p-2 my-2 bg-blue-gray-50 rounded-md text-black focus:bg-blue-gray-100 focus:outline-blue-gray-700 text-xl md:text-2xl"
+                />
+              </div>
+              <div className="p-1 my-1 md:my-2">
+                <label
+                  htmlFor="price"
+                  className="text-[12px] md:text-sm font-bold text-gray-600"
+                >
+                  Floor at
+                </label>
+                <br />
+                <input
+                  type="text"
+                  name="price"
+                  id="price"
+                  defaultValue={room.pricePerNight}
+                  onChange={(e) => setPrice(parseInt(e.target.value))}
+                  className="w-full p-2 my-2 bg-blue-gray-50 rounded-md text-black focus:bg-blue-gray-100 focus:outline-blue-gray-700 text-xl md:text-2xl"
+                />
+              </div>
+              <div className="p-2 my-2 md:my-3">
+                <label
+                  htmlFor="Description"
+                  className="text-[12px] md:text-sm font-bold text-gray-600"
+                >
+                  Description
+                </label>
+                <br />
+                <textarea
+                  name="Description"
+                  id="Description"
+                  defaultValue={room.desc}
+                  onChange={(e) => setDesc(e.target.value)}
+                  className="w-full p-2 my-2 bg-blue-gray-50 rounded-md text-black focus:bg-blue-gray-100 focus:outline-blue-gray-700 text-xl md:text-2xl"
+                />
+              </div>
+              <div className="p-1 my-1 md:my-2">
+                <label
+                  htmlFor=""
+                  className="text-[12px] md:text-sm font-bold text-gray-600"
+                >
+                  Status
+                </label>
+                <select
+                  onChange={(e) => handleStatus(e)}
+                  className="w-full p-2 my-2 bg-blue-gray-50 rounded-md text-black focus:bg-blue-gray-100 focus:outline-blue-gray-700 text-xl md:text-2xl"
+                  name=""
+                  id=""
+                  defaultValue={room.bookingStatus ? "true" : "false"}
+                >
+                  <option value="true">
+                    {room.bookingStatus ? "Unavailable" : "Available"}
+                  </option>
+                  <option value="false">
+                    {room.bookingStatus ? "Available" : "Unavailable"}
+                  </option>
+                </select>
+              </div>
+              <div className="p-1 my-1 md:my-2">
+                <label
+                  htmlFor="type"
+                  className="text-[12px] md:text-sm font-bold text-gray-600"
+                >
+                  Room Type
+                </label>
+                <select
+                  onChange={(e) => setType(e.target.value)}
+                  className="w-full p-2 my-2 bg-blue-gray-50 rounded-md text-black focus:bg-blue-gray-100 focus:outline-blue-gray-700 text-xl md:text-2xl"
+                  name="type"
+                  id="type"
+                  defaultValue={room.roomType}
+                >
+                  <option value={room.roomType}>{room.roomType}</option>
+                  <option value="single">Single</option>
+                  <option value="couple">Couple</option>
+                  <option value="family">Family</option>
+                </select>
+              </div>
+              <div className="md:flex md:justify-between items-center justify-end">
+                <button
+                  onClick={() => router.back()}
+                  className="hidden md:block text-xl p-2 border border-orange-700 hover:bg-orange-500 font-bold hover:text-white rounded-lg bg-orange-900"
+                >
+                  back
+                </button>
+                <div className="flex justify-end gap-4 mr-2">
                   <button
-                    className="text-sm font-bold text-white bg-orange-600 hover:bg-orange-900 p-2 rounded"
+                    className="px-1 py-3 text-center text-sm md:text-xl rounded-md hover:bg-opacity-70 bg-blue-700 text-white font-bold"
                     onClick={handleUpdate}
                   >
-                    Update
+                    Save
                   </button>
                   <button
-                    className="text-sm font-bold text-white bg-red-600 hover:bg-red-900 p-2 rounded"
+                    className="px-1 py-3 text-center text-sm md:text-xl rounded-md hover:bg-opacity-70 bg-red-700 text-white font-bold"
                     onClick={handleDeleteRoom}
                   >
-                    Delete
+                    Delete This Room
                   </button>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         ) : (
           <div>

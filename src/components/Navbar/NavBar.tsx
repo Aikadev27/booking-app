@@ -62,7 +62,7 @@ export default function NavBar(props: INavBarProps) {
       <nav
         data-aos="fade-left"
         className={`${
-          scrolling ? "bg-white " : "bg-gray-200 bg-opacity-70 "
+          scrolling ? "bg-blue-gray-100 " : "bg-gray-200 bg-opacity-70 "
         } fixed top-0 right-0 left-0  z-50 transition-all `}
         id="navbar"
       >
@@ -110,6 +110,7 @@ export default function NavBar(props: INavBarProps) {
                 </svg>
               </button>
             </div>
+
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div
                 className={`hidden sm:ml-6 sm:block
@@ -130,16 +131,11 @@ export default function NavBar(props: INavBarProps) {
                     isAuthenticated={isAuthenticated}
                     style="text-orange-700  hover:bg-orange-300 hover:text-white rounded-md px-3 py-2 text-sm font-bold"
                   />
-
-                  <Link
-                    href="/about"
-                    className="text-blue-700  hover:bg-blue-300 hover:text-white rounded-md px-3 py-2 text-sm font-bold"
-                  >
-                    About Us
-                  </Link>
                 </div>
               </div>
             </div>
+            <div className=" sm:hidden flex-auto font-bold">AIKA BOOKING</div>
+
             {user ? (
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <div className="relative ml-3">
@@ -202,7 +198,7 @@ export default function NavBar(props: INavBarProps) {
                         View your booking history
                       </Link>
                       <Link
-                        href="#"
+                        href="/"
                         className="block px-4 py-2 text-sm text-gray-700 hover:opacity-70"
                         role="menuitem"
                         tabIndex={-1}
@@ -342,13 +338,6 @@ export default function NavBar(props: INavBarProps) {
               style="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
               aria-current="page"
             />
-
-            <Link
-              href="/about"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              About Us
-            </Link>
           </div>
         </div>
       </nav>
